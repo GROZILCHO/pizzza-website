@@ -42,22 +42,6 @@ const server = http.createServer((req, res) => {
 
   tryServe(filePath, (err) => {
     if (err.code === 'ENOENT') {
-      // If requested /assets/... but not found, try /src/assets/...
-      if (reqPath.startsWith('/assets/')) {
-        const altPath = path.join(__dirname, 'src', reqPath);
-        return tryServe(altPath, () => {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('Image Not Found');
-        });
-      }
-      // If requested /src/assets/... but not found, try /assets/...
-      if (reqPath.startsWith('/src/assets/')) {
-        const altPath = path.join(__dirname, reqPath.replace('/src', ''));
-        return tryServe(altPath, () => {
-          res.writeHead(404, { 'Content-Type': 'text/plain' });
-          res.end('Image Not Found');
-        });
-      }
       // For images, fonts, styles, scripts: do not fallback to index.html
       if (ext && ext !== '.html') {
         res.writeHead(404, { 'Content-Type': 'text/plain' });

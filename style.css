@@ -397,7 +397,7 @@ button {
   text-align: center;
   padding: 5rem 1rem;
   border-bottom: 5px solid #000;
-  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('src/assets/images/pizzza-hero_live_concert.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('assets/images/pizzza-hero_live_concert.jpg') no-repeat center center/cover;
   overflow: hidden;
 }
 
@@ -984,7 +984,7 @@ button {
    -------------------------------------------------------------------------- */
 .jukebox-section {
   padding: 6rem 0;
-  background: linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.90)), url('src/assets/images/jukebox-background-image.jpg') no-repeat center center/cover;
+  background: linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.90)), url('assets/images/jukebox-background-image.jpg') no-repeat center center/cover;
   border-bottom: 5px solid #000;
 }
 
