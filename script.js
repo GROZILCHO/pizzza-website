@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initJukeboxPlayer();
   initTimelineModal();
   initBookingForm();
+  initMerchCart();
   initEasterEggPartyMode();
 });
 
@@ -752,12 +753,11 @@ function initTimelineModal() {
 }
 
 /* ==========================================================================
-   4. BOOKING FORM & MERCH INQUIRIES
+   4. BOOKING FORM
    ========================================================================== */
 function initBookingForm() {
   const form = document.getElementById('booking-form');
   const feedback = document.getElementById('form-feedback');
-  const merchButtons = document.querySelectorAll('.btn-merch-inquire');
 
   if (form && feedback) {
     form.addEventListener('submit', (e) => {
@@ -775,26 +775,7 @@ function initBookingForm() {
     });
   }
 
-  // Merch quick-inquiry auto-fill
-  merchButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      const item = btn.getAttribute('data-item');
-      const bookingSection = document.getElementById('booking');
-      const msgInput = document.getElementById('b-msg');
 
-      if (bookingSection) {
-        bookingSection.scrollIntoView({ behavior: 'smooth' });
-        if (msgInput) {
-          if (currentLang === 'en') {
-            msgInput.value = `Hello! I would like to order the following merch item: "${item}". Please send delivery and payment details.`;
-          } else {
-            msgInput.value = `Здравейте! Искам да поръчам следния мърч: "${item}". Моля за детайли за доставка и плащане.`;
-          }
-          msgInput.focus();
-        }
-      }
-    });
-  });
 }
 
 /* ==========================================================================
@@ -925,7 +906,7 @@ const translations = {
     btn_fb_event: 'ФБ СЪБИТИЕ',
     merch_badge: 'ОФИЦИАЛЕН DIY МЪРЧ',
     merch_title: 'МЕНЮ С МЪРЧ ЗА ФЕНОВЕ',
-    merch_sub: '100% памук, ръчен ситопечат и лимитирани бройки.',
+    merch_sub: 'Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.',
     merch_item_1_title: 'Тениска „25 Години Ска & Пица“',
     merch_item_2_title: '12" Червен Винил „Златни Корички“',
     merch_item_3_title: 'Сет Нашивки + 10 Стикери за кутии',
@@ -1067,7 +1048,7 @@ const translations = {
     btn_fb_event: 'FB EVENT',
     merch_badge: 'OFFICIAL DIY MERCH',
     merch_title: 'FAN MERCH MENU',
-    merch_sub: '100% cotton, hand silkscreen and limited prints.',
+    merch_sub: 'Demonstration items. Prices are illustrative. Orders are not accepted.',
     merch_item_1_title: 'T-Shirt "25 Yrs Ska & Pizza"',
     merch_item_2_title: '12" Red Vinyl "Greatest Crusts"',
     merch_item_3_title: 'Patches Set + 10 Box Stickers',
@@ -1158,6 +1139,7 @@ function initLanguageSwitcher() {
     if (emailInput) emailInput.placeholder = 'pizzzafan@domain.com';
     if (cityInput) cityInput.placeholder = lang === 'en' ? 'City' : 'Град';
     if (msgInput) msgInput.placeholder = lang === 'en' ? 'Tell us about the stage, sound system and venue capacity...' : 'Разкажи за сцената, саунда и капацитета...';
+    renderMerchCart();
   }
 
   if (btnBg) {
@@ -1169,4 +1151,139 @@ function initLanguageSwitcher() {
 
   // Initialize with Bulgarian by default
   setLanguage('bg');
+}
+
+/* Inline demo merchandise: catalog, state, operations, localization and rendering. */
+const MERCH_CONFIG = Object.freeze({ demoMode: true });
+const MERCH_PRODUCTS = Object.freeze({
+  'anniversary-shirt': { price: 3500, names: { bg: 'Тениска „25 Години Ска & Пица“', en: 'T-Shirt "25 Yrs Ska & Pizza"' }, sizes: ['S', 'M', 'L', 'XL', '2XL'] },
+  'red-vinyl': { price: 4500, names: { bg: '12" Червен Винил „Златни Корички“', en: '12" Red Vinyl "Greatest Crusts"' } },
+  'patches-stickers': { price: 1500, names: { bg: 'Сет Нашивки + 10 Стикери за кутии', en: 'Patches Set + 10 Box Stickers' } },
+  'bottle-opener': { price: 1000, names: { bg: 'Метална отварачка „Pizzza Ска-Кор“', en: 'Metal Bottle Opener "Pizzza Ska-Core"' } }
+});
+const merchCart = new Map();
+let merchFeedback = null;
+const MERCH_LABELS = {
+  bg: {
+    title: 'Демо количка', demo: 'ДЕМО', notice: 'Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.',
+    size: 'Размер', choose: 'Избери размер', add: 'Добави в количката', empty: 'Количката е празна.',
+    product: 'Продукт', variant: 'Размер / вариант', quantity: 'Количество', unit: 'Единична цена', line: 'Общо за артикула',
+    subtotal: 'Междинна сума', count: 'Общ брой артикули', remove: 'Премахни', increase: 'Увеличи количеството', decrease: 'Намали количеството',
+    summary: 'Обобщение (само за преглед)', unavailable: 'Поръчките още не са достъпни', explanation: 'Демо режим: не се изпращат поръчки, имейли или лични данни.',
+    selectSize: 'Избери размер, преди да добавиш тениската.', added: 'Добавен артикул', updated: 'Количеството е променено', removed: 'Артикулът е премахнат'
+  },
+  en: {
+    title: 'Demo cart', demo: 'DEMO', notice: 'Demonstration items. Prices are illustrative. Orders are not accepted.',
+    size: 'Size', choose: 'Choose a size', add: 'Add to cart', empty: 'Your cart is empty.',
+    product: 'Product', variant: 'Size / variant', quantity: 'Quantity', unit: 'Unit price', line: 'Line total',
+    subtotal: 'Subtotal', count: 'Total item count', remove: 'Remove', increase: 'Increase quantity', decrease: 'Decrease quantity',
+    summary: 'Order summary (read only)', unavailable: 'Ordering is not yet available', explanation: 'Demo mode: no orders, emails or personal data are submitted.',
+    selectSize: 'Choose a size before adding the T-shirt.', added: 'Item added', updated: 'Quantity updated', removed: 'Item removed'
+  }
+};
+function merchLabels() { return MERCH_LABELS[currentLang] || MERCH_LABELS.bg; }
+function merchMoney(amount) { return (amount / 100).toFixed(2) + ' BGN'; }
+function merchTotals() {
+  return [...merchCart.values()].reduce((total, item) => ({
+    count: total.count + item.quantity,
+    subtotal: total.subtotal + MERCH_PRODUCTS[item.id].price * item.quantity
+  }), { count: 0, subtotal: 0 });
+}
+function addMerchItem(id, size = '') {
+  const product = MERCH_PRODUCTS[id];
+  if (!product || (product.sizes && !product.sizes.includes(size)) || (!product.sizes && size)) return false;
+  const key = id + ':' + size;
+  const item = merchCart.get(key);
+  merchCart.set(key, { id, size, quantity: (item ? item.quantity : 0) + 1 });
+  merchFeedback = { kind: 'added', id, size };
+  return true;
+}
+function changeMerchItem(key, action) {
+  const item = merchCart.get(key);
+  if (!item || !['increase', 'decrease', 'remove'].includes(action)) return;
+  const remove = action === 'remove' || (action === 'decrease' && item.quantity === 1);
+  if (remove) merchCart.delete(key);
+  else item.quantity += action === 'increase' ? 1 : -1;
+  merchFeedback = { kind: remove ? 'removed' : 'updated', id: item.id, size: item.size };
+}
+function merchOrderSummary() {
+  const labels = merchLabels();
+  const lines = [...merchCart.values()].map(item => {
+    const product = MERCH_PRODUCTS[item.id];
+    return `${labels.product}: ${product.names[currentLang]}\n${labels.variant}: ${item.size || '—'} | ${labels.quantity}: ${item.quantity}\n${labels.unit}: ${merchMoney(product.price)} | ${labels.line}: ${merchMoney(product.price * item.quantity)}`;
+  });
+  return [labels.notice, lines.length ? lines.join('\n\n') : labels.empty, `${labels.subtotal}: ${merchMoney(merchTotals().subtotal)}`].join('\n\n');
+}
+function renderMerchCart() {
+  const root = document.getElementById('merch-cart');
+  if (!root) return;
+  const labels = merchLabels();
+  const column = root.closest('.col-merch');
+  column.querySelector('[data-i18n="merch_sub"]').textContent = MERCH_CONFIG.demoMode ? labels.notice : labels.explanation;
+  column.querySelectorAll('[data-merch-demo]').forEach(el => { el.textContent = labels.demo; });
+  column.querySelectorAll('.btn-merch-inquire').forEach(button => {
+    const product = MERCH_PRODUCTS[button.dataset.productId];
+    const card = button.closest('.merch-card');
+    card.querySelector('.merch-title').textContent = product.names[currentLang];
+    card.querySelector('.merch-price').textContent = merchMoney(product.price);
+    button.textContent = labels.add;
+    button.setAttribute('aria-label', `${labels.add}: ${product.names[currentLang]}`);
+  });
+  column.querySelector('.merch-size-label').textContent = labels.size;
+  document.querySelector('#merch-shirt-size option[value=""]').textContent = labels.choose;
+  document.getElementById('merch-cart-heading').textContent = labels.title;
+  const content = document.getElementById('merch-cart-content');
+  content.replaceChildren();
+  if (!merchCart.size) {
+    const empty = document.createElement('p'); empty.textContent = labels.empty; content.append(empty);
+  }
+  for (const [key, item] of merchCart) {
+    const product = MERCH_PRODUCTS[item.id];
+    const name = product.names[currentLang] + (item.size ? ` (${labels.size}: ${item.size})` : '');
+    const row = document.createElement('div'); row.className = 'merch-cart-line';
+    const heading = document.createElement('h5'); heading.textContent = name;
+    const price = document.createElement('p'); price.textContent = `${labels.unit}: ${merchMoney(product.price)} · ${labels.line}: ${merchMoney(product.price * item.quantity)}`;
+    const controls = document.createElement('div'); controls.className = 'merch-cart-controls';
+    const quantity = document.createElement('span'); quantity.textContent = `${labels.quantity}: ${item.quantity}`;
+    for (const [action, text] of [['decrease', '−'], ['increase', '+'], ['remove', labels.remove]]) {
+      const button = document.createElement('button'); button.type = 'button'; button.textContent = text;
+      button.dataset.cartAction = action; button.dataset.cartKey = key;
+      button.setAttribute('aria-label', `${labels[action]}: ${name}`);
+      controls.append(button);
+    }
+    controls.prepend(quantity); row.append(heading, price, controls); content.append(row);
+  }
+  const totals = merchTotals();
+  const total = document.createElement('p'); total.className = 'merch-cart-total';
+  total.textContent = `${labels.count}: ${totals.count} · ${labels.subtotal}: ${merchMoney(totals.subtotal)}`; content.append(total);
+  document.getElementById('merch-summary-label').textContent = labels.summary;
+  document.getElementById('merch-order-summary').value = merchOrderSummary();
+  document.getElementById('merch-order-explanation').textContent = labels.explanation;
+  document.getElementById('merch-submit').textContent = labels.unavailable;
+  document.getElementById('merch-submit').disabled = true; // No order transport exists in this phase.
+  const feedback = document.getElementById('merch-feedback');
+  feedback.textContent = merchFeedback ? (merchFeedback.kind === 'selectSize' ? labels.selectSize : `${labels[merchFeedback.kind]}: ${MERCH_PRODUCTS[merchFeedback.id].names[currentLang]}${merchFeedback.size ? ' (' + merchFeedback.size + ')' : ''}. ${labels.count}: ${totals.count}. ${labels.subtotal}: ${merchMoney(totals.subtotal)}`) : '';
+}
+function initMerchCart() {
+  const root = document.getElementById('merch-cart');
+  if (!root || root.dataset.initialized) return;
+  root.dataset.initialized = 'true';
+  root.closest('.col-merch').addEventListener('click', event => {
+    const add = event.target.closest('.btn-merch-inquire');
+    if (add) {
+      const size = document.getElementById('merch-shirt-size');
+      const success = addMerchItem(add.dataset.productId, MERCH_PRODUCTS[add.dataset.productId].sizes ? size.value : '');
+      if (!success) { merchFeedback = { kind: 'selectSize' }; size.setAttribute('aria-invalid', 'true'); size.focus(); }
+      else size.removeAttribute('aria-invalid');
+      renderMerchCart(); return;
+    }
+    const button = event.target.closest('[data-cart-action]');
+    if (!button) return;
+    const key = button.dataset.cartKey; const action = button.dataset.cartAction;
+    changeMerchItem(key, action); renderMerchCart();
+    const replacement = [...root.querySelectorAll('[data-cart-action]')].find(el => el.dataset.cartKey === key && el.dataset.cartAction === action) || root.querySelector('[data-cart-action]') || root.closest('.col-merch').querySelector('.btn-merch-inquire');
+    replacement.focus();
+  });
+  document.getElementById('merch-shirt-size').addEventListener('change', event => { event.target.removeAttribute('aria-invalid'); });
+  renderMerchCart();
 }

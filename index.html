@@ -667,7 +667,7 @@
           <div class="col-merch">
             <div class="column-badge" data-i18n="merch_badge">ОФИЦИАЛЕН DIY МЪРЧ</div>
             <h3 class="col-heading" data-i18n="merch_title">МЕНЮ С МЪРЧ ЗА ФЕНОВЕ</h3>
-            <p class="col-sub" data-i18n="merch_sub">100% памук, ръчен ситопечат и лимитирани бройки.</p>
+            <p class="col-sub" data-i18n="merch_sub">Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.</p>
 
             <div class="merch-items-grid">
               
@@ -675,25 +675,27 @@
               <div class="merch-card">
                 <div class="merch-img-slot">
                   <img src="assets/images/merch-tshirt.jpg" alt="Юбилейна тениска PIZZZA 25 Години Ска &amp; Пица" class="merch-img">
-                  <span class="merch-stock" data-i18n="stock_limited">ОГРАНИЧЕНИ</span>
+                  <span class="merch-stock" data-merch-demo>ДЕМО</span>
                 </div>
                 <div class="merch-info">
                   <h4 class="merch-title" data-i18n="merch_item_1_title">Тениска „25 Години Ска &amp; Пица“</h4>
                   <p class="merch-price">35.00 лв.</p>
-                  <button class="btn btn-merch-inquire" data-item="Тениска 25 Години" data-i18n="btn_order">Поръчай ➔</button>
+                  <label class="merch-size-label" for="merch-shirt-size">Размер</label>
+                  <select id="merch-shirt-size" class="merch-size" aria-describedby="merch-feedback"><option value="">Избери размер</option><option>S</option><option>M</option><option>L</option><option>XL</option><option>2XL</option></select>
+                  <button type="button" class="btn btn-merch-inquire" data-product-id="anniversary-shirt">Добави в количката</button>
                 </div>
               </div>
 
               <!-- Merch Item 2 -->
               <div class="merch-card">
                 <div class="merch-img-slot">
-                  <img src="assets/images/album1.jpg" alt="Лимитиран 12-инчов червен винил allBoom PIZZZA" class="merch-img">
-                  <span class="merch-stock" data-i18n="stock_vinyl">ЛИМИТИРАН</span>
+                  <img src="assets/images/album1.jpg" alt="12-инчов червен винил allBoom PIZZZA" class="merch-img">
+                  <span class="merch-stock" data-merch-demo>ДЕМО</span>
                 </div>
                 <div class="merch-info">
                   <h4 class="merch-title" data-i18n="merch_item_2_title">12" Червен Винил „Златни Корички“</h4>
                   <p class="merch-price">45.00 лв.</p>
-                  <button class="btn btn-merch-inquire" data-item="Червен Винил" data-i18n="btn_order">Поръчай ➔</button>
+                  <button type="button" class="btn btn-merch-inquire" data-product-id="red-vinyl">Добави в количката</button>
                 </div>
               </div>
 
@@ -701,12 +703,12 @@
               <div class="merch-card">
                 <div class="merch-img-slot">
                   <img src="assets/images/logo.jpg" alt="Сет официални нашивки и 10 стикери за кутии PIZZZA" class="merch-img">
-                  <span class="merch-stock" data-i18n="stock_available">В НАЛИЧНОСТ</span>
+                  <span class="merch-stock" data-merch-demo>ДЕМО</span>
                 </div>
                 <div class="merch-info">
                   <h4 class="merch-title" data-i18n="merch_item_3_title">Сет Нашивки + 10 Стикери за кутии</h4>
                   <p class="merch-price">15.00 лв.</p>
-                  <button class="btn btn-merch-inquire" data-item="Сет Нашивки" data-i18n="btn_order">Поръчай ➔</button>
+                  <button type="button" class="btn btn-merch-inquire" data-product-id="patches-stickers">Добави в количката</button>
                 </div>
               </div>
 
@@ -714,16 +716,25 @@
               <div class="merch-card">
                 <div class="merch-img-slot">
                   <img src="assets/images/band.jpg" alt="Официална метална отварачка и аксесоар PIZZZA Ска-Кор" class="merch-img">
-                  <span class="merch-stock" data-i18n="stock_top">ТОП ИЗБОР</span>
+                  <span class="merch-stock" data-merch-demo>ДЕМО</span>
                 </div>
                 <div class="merch-info">
                   <h4 class="merch-title" data-i18n="merch_item_4_title">Метална отварачка „Pizzza Ска-Кор“</h4>
                   <p class="merch-price">10.00 лв.</p>
-                  <button class="btn btn-merch-inquire" data-item="Отварачка Pizzza" data-i18n="btn_order">Поръчай ➔</button>
+                  <button type="button" class="btn btn-merch-inquire" data-product-id="bottle-opener">Добави в количката</button>
                 </div>
               </div>
 
             </div>
+            <section id="merch-cart" class="merch-cart" aria-labelledby="merch-cart-heading">
+              <h4 id="merch-cart-heading">Демо количка</h4>
+              <p id="merch-feedback" class="merch-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+              <div id="merch-cart-content"></div>
+              <label id="merch-summary-label" for="merch-order-summary">Обобщение (само за преглед)</label>
+              <textarea id="merch-order-summary" readonly rows="8"></textarea>
+              <p id="merch-order-explanation">Демо режим: не се изпращат поръчки, имейли или лични данни.</p>
+              <button id="merch-submit" class="btn" type="button" disabled aria-describedby="merch-order-explanation">Поръчките още не са достъпни</button>
+            </section>
           </div>
 
         </div>

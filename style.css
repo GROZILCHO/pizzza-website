@@ -2224,3 +2224,25 @@ body.party-mode .party-mode-banner {
   }
 }
 
+
+/* Inline merchandise demo cart */
+.col-merch { min-width: 0; }
+.merch-size-label { display: block; font-family: var(--font-heading); margin-top: .75rem; }
+.merch-size { width: 100%; min-height: 44px; margin: .3rem 0 .75rem; padding: .4rem; background: var(--color-bone-white); color: var(--color-black); border: 3px solid var(--color-black); font: inherit; }
+.merch-size[aria-invalid="true"] { border-color: var(--color-punk-red); }
+.merch-cart { margin-top: 2rem; padding: 1rem; border: 3px solid var(--color-black); box-shadow: var(--box-shadow-punk); background: var(--color-dark-card); overflow-wrap: anywhere; }
+.merch-cart h4 { font-family: var(--font-subdisplay); color: var(--color-cheese-light); }
+.merch-feedback { min-height: 1.5em; color: var(--color-cheese-light); margin: .75rem 0; }
+.merch-cart-line { padding: 1rem 0; border-bottom: 2px solid var(--color-cheese-light); }
+.merch-cart-line h5 { font: 700 1.1rem var(--font-heading); }
+.merch-cart-line p { margin: .5rem 0; }
+.merch-cart-controls { display: flex; flex-wrap: wrap; align-items: center; gap: .5rem; }
+.merch-cart-controls span { flex-basis: 100%; }
+.merch-cart-controls button { min-width: 44px; min-height: 44px; padding: .4rem .6rem; border: 2px solid var(--color-black); background: var(--color-cheese-light); color: var(--color-black); font: 700 1rem var(--font-heading); box-shadow: 2px 2px 0 var(--color-black); }
+.merch-cart button:focus-visible, .merch-size:focus-visible, #merch-order-summary:focus-visible, .btn-merch-inquire:focus-visible { outline: 3px solid var(--color-bone-white); outline-offset: 3px; }
+.merch-cart-total { font-weight: 700; margin: 1rem 0; color: var(--color-cheese-light); }
+#merch-summary-label { display: block; font-family: var(--font-heading); margin-bottom: .5rem; }
+#merch-order-summary { display: block; width: 100%; min-height: 12rem; padding: .6rem; resize: vertical; background: var(--color-black); color: var(--color-bone-white); border: 2px solid var(--color-cheese-light); font: .9rem/1.5 var(--font-body); }
+#merch-order-explanation { margin: 1rem 0; }
+#merch-submit { max-width: 100%; white-space: normal; opacity: 1; background: var(--color-border); color: var(--color-bone-white); cursor: not-allowed; }
+@media (max-width: 480px) { .merch-cart { padding: .75rem; } }
