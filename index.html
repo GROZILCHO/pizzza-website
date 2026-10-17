@@ -667,7 +667,7 @@
           <div class="col-merch">
             <div class="column-badge" data-i18n="merch_badge">ОФИЦИАЛЕН DIY МЪРЧ</div>
             <h3 class="col-heading" data-i18n="merch_title">МЕНЮ С МЪРЧ ЗА ФЕНОВЕ</h3>
-            <p class="col-sub" data-i18n="merch_sub">Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.</p>
+            <p class="col-sub" data-i18n="merch_sub">Демо артикули.</p>
 
             <div class="merch-items-grid">
               
@@ -726,18 +726,29 @@
               </div>
 
             </div>
-            <section id="merch-cart" class="merch-cart" aria-labelledby="merch-cart-heading">
-              <h4 id="merch-cart-heading">Демо количка</h4>
-              <p id="merch-feedback" class="merch-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
-              <div id="merch-cart-content"></div>
-              <label id="merch-summary-label" for="merch-order-summary">Обобщение (само за преглед)</label>
-              <textarea id="merch-order-summary" readonly rows="8"></textarea>
-              <p id="merch-order-explanation">Демо режим: не се изпращат поръчки, имейли или лични данни.</p>
-              <button id="merch-submit" class="btn" type="button" disabled aria-describedby="merch-order-explanation">Поръчките още не са достъпни</button>
-            </section>
+
           </div>
 
         </div>
+        <section id="merch-cart" class="merch-cart" aria-labelledby="merch-cart-heading">
+          <header class="merch-cart-header">
+            <h4 id="merch-cart-heading">Демо количка</h4>
+            <p id="merch-cart-count"></p>
+          </header>
+          <div class="merch-cart-body">
+            <p id="merch-feedback" class="merch-feedback" role="status" aria-live="polite" aria-atomic="true"></p>
+            <div id="merch-cart-content"></div>
+            <details class="merch-order-details">
+              <summary id="merch-summary-label">Обобщение (само за преглед)</summary>
+              <div id="merch-order-summary"></div>
+            </details>
+          </div>
+          <footer class="merch-cart-footer">
+            <p id="merch-cart-subtotal" class="merch-cart-total"></p>
+            <p id="merch-order-explanation"></p>
+            <button id="merch-submit" class="btn" type="button" disabled aria-describedby="merch-order-explanation">Поръчките още не са достъпни</button>
+          </footer>
+        </section>
       </div>
     </section>
 

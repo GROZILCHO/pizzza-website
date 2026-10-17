@@ -906,7 +906,7 @@ const translations = {
     btn_fb_event: 'ФБ СЪБИТИЕ',
     merch_badge: 'ОФИЦИАЛЕН DIY МЪРЧ',
     merch_title: 'МЕНЮ С МЪРЧ ЗА ФЕНОВЕ',
-    merch_sub: 'Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.',
+    merch_sub: 'Демо артикули.',
     merch_item_1_title: 'Тениска „25 Години Ска & Пица“',
     merch_item_2_title: '12" Червен Винил „Златни Корички“',
     merch_item_3_title: 'Сет Нашивки + 10 Стикери за кутии',
@@ -1048,7 +1048,7 @@ const translations = {
     btn_fb_event: 'FB EVENT',
     merch_badge: 'OFFICIAL DIY MERCH',
     merch_title: 'FAN MERCH MENU',
-    merch_sub: 'Demonstration items. Prices are illustrative. Orders are not accepted.',
+    merch_sub: 'Demo items.',
     merch_item_1_title: 'T-Shirt "25 Yrs Ska & Pizza"',
     merch_item_2_title: '12" Red Vinyl "Greatest Crusts"',
     merch_item_3_title: 'Patches Set + 10 Box Stickers',
@@ -1165,7 +1165,7 @@ const merchCart = new Map();
 let merchFeedback = null;
 const MERCH_LABELS = {
   bg: {
-    title: 'Демо количка', demo: 'ДЕМО', notice: 'Демонстрационни артикули. Цените са примерни. Не се приемат поръчки.',
+    title: 'Демо количка', demo: 'ДЕМО', notice: 'Демонстрационни артикули. Цените са примерни. Поръчките не са достъпни; не се изпращат имейли или лични данни.',
     size: 'Размер', choose: 'Избери размер', add: 'Добави в количката', empty: 'Количката е празна.',
     product: 'Продукт', variant: 'Размер / вариант', quantity: 'Количество', unit: 'Единична цена', line: 'Общо за артикула',
     subtotal: 'Междинна сума', count: 'Общ брой артикули', remove: 'Премахни', increase: 'Увеличи количеството', decrease: 'Намали количеството',
@@ -1173,7 +1173,7 @@ const MERCH_LABELS = {
     selectSize: 'Избери размер, преди да добавиш тениската.', added: 'Добавен артикул', updated: 'Количеството е променено', removed: 'Артикулът е премахнат'
   },
   en: {
-    title: 'Demo cart', demo: 'DEMO', notice: 'Demonstration items. Prices are illustrative. Orders are not accepted.',
+    title: 'Demo cart', demo: 'DEMO', notice: 'Demonstration items. Prices are illustrative. Ordering is unavailable; no emails or personal data are submitted.',
     size: 'Size', choose: 'Choose a size', add: 'Add to cart', empty: 'Your cart is empty.',
     product: 'Product', variant: 'Size / variant', quantity: 'Quantity', unit: 'Unit price', line: 'Line total',
     subtotal: 'Subtotal', count: 'Total item count', remove: 'Remove', increase: 'Increase quantity', decrease: 'Decrease quantity',
@@ -1208,18 +1208,36 @@ function changeMerchItem(key, action) {
 }
 function merchOrderSummary() {
   const labels = merchLabels();
-  const lines = [...merchCart.values()].map(item => {
+  const summary = document.createElement('ul');
+  summary.className = 'merch-summary-list';
+  for (const item of merchCart.values()) {
     const product = MERCH_PRODUCTS[item.id];
-    return `${labels.product}: ${product.names[currentLang]}\n${labels.variant}: ${item.size || '—'} | ${labels.quantity}: ${item.quantity}\n${labels.unit}: ${merchMoney(product.price)} | ${labels.line}: ${merchMoney(product.price * item.quantity)}`;
-  });
-  return [labels.notice, lines.length ? lines.join('\n\n') : labels.empty, `${labels.subtotal}: ${merchMoney(merchTotals().subtotal)}`].join('\n\n');
+    const row = document.createElement('li');
+    const name = document.createElement('h5');
+    name.textContent = product.names[currentLang];
+    const facts = document.createElement('dl');
+    for (const [label, value] of [
+      [labels.variant, item.size || '\u2014'], [labels.quantity, item.quantity],
+      [labels.unit, merchMoney(product.price)], [labels.line, merchMoney(product.price * item.quantity)]
+    ]) {
+      const field = document.createElement('div');
+      const term = document.createElement('dt'); term.textContent = label;
+      const description = document.createElement('dd'); description.textContent = value;
+      field.append(term, description); facts.append(field);
+    }
+    row.append(name, facts); summary.append(row);
+  }
+  if (!merchCart.size) {
+    const empty = document.createElement('li'); empty.textContent = labels.empty; summary.append(empty);
+  }
+  return summary;
 }
 function renderMerchCart() {
   const root = document.getElementById('merch-cart');
   if (!root) return;
   const labels = merchLabels();
-  const column = root.closest('.col-merch');
-  column.querySelector('[data-i18n="merch_sub"]').textContent = MERCH_CONFIG.demoMode ? labels.notice : labels.explanation;
+  const column = root.closest('#tour-merch').querySelector('.col-merch');
+  column.querySelector('[data-i18n="merch_sub"]').textContent = labels.demo;
   column.querySelectorAll('[data-merch-demo]').forEach(el => { el.textContent = labels.demo; });
   column.querySelectorAll('.btn-merch-inquire').forEach(button => {
     const product = MERCH_PRODUCTS[button.dataset.productId];
@@ -1254,11 +1272,11 @@ function renderMerchCart() {
     controls.prepend(quantity); row.append(heading, price, controls); content.append(row);
   }
   const totals = merchTotals();
-  const total = document.createElement('p'); total.className = 'merch-cart-total';
-  total.textContent = `${labels.count}: ${totals.count} · ${labels.subtotal}: ${merchMoney(totals.subtotal)}`; content.append(total);
+  document.getElementById('merch-cart-count').textContent = `${labels.count}: ${totals.count}`;
+  document.getElementById('merch-cart-subtotal').textContent = `${labels.subtotal}: ${merchMoney(totals.subtotal)}`;
   document.getElementById('merch-summary-label').textContent = labels.summary;
-  document.getElementById('merch-order-summary').value = merchOrderSummary();
-  document.getElementById('merch-order-explanation').textContent = labels.explanation;
+  document.getElementById('merch-order-summary').replaceChildren(merchOrderSummary());
+  document.getElementById('merch-order-explanation').textContent = MERCH_CONFIG.demoMode ? labels.notice : labels.explanation;
   document.getElementById('merch-submit').textContent = labels.unavailable;
   document.getElementById('merch-submit').disabled = true; // No order transport exists in this phase.
   const feedback = document.getElementById('merch-feedback');
@@ -1268,7 +1286,7 @@ function initMerchCart() {
   const root = document.getElementById('merch-cart');
   if (!root || root.dataset.initialized) return;
   root.dataset.initialized = 'true';
-  root.closest('.col-merch').addEventListener('click', event => {
+  root.closest('#tour-merch').addEventListener('click', event => {
     const add = event.target.closest('.btn-merch-inquire');
     if (add) {
       const size = document.getElementById('merch-shirt-size');
@@ -1281,7 +1299,7 @@ function initMerchCart() {
     if (!button) return;
     const key = button.dataset.cartKey; const action = button.dataset.cartAction;
     changeMerchItem(key, action); renderMerchCart();
-    const replacement = [...root.querySelectorAll('[data-cart-action]')].find(el => el.dataset.cartKey === key && el.dataset.cartAction === action) || root.querySelector('[data-cart-action]') || root.closest('.col-merch').querySelector('.btn-merch-inquire');
+    const replacement = [...root.querySelectorAll('[data-cart-action]')].find(el => el.dataset.cartKey === key && el.dataset.cartAction === action) || root.querySelector('[data-cart-action]') || root.closest('#tour-merch').querySelector('.btn-merch-inquire');
     replacement.focus();
   });
   document.getElementById('merch-shirt-size').addEventListener('change', event => { event.target.removeAttribute('aria-invalid'); });
