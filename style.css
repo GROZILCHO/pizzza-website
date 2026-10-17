@@ -1861,26 +1861,63 @@ button {
 }
 
 .footer-content {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  padding: 3rem 0;
-  gap: 2rem;
+  padding: 3rem 0 2rem;
+  text-align: left;
 }
 
+.footer-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-brand { min-width: 0; }
 .footer-logo {
   font-family: var(--font-display);
   font-size: 2.4rem;
   color: var(--color-punk-red);
 }
-
-.footer-copy {
-  max-width: 500px;
-  font-size: 0.9rem;
-  color: #888;
+.footer-description {
+  margin-top: .35rem;
+  font-family: var(--font-heading);
+  color: var(--color-bone-white);
+  letter-spacing: .06em;
 }
-
+.footer-divider {
+  border: 0;
+  border-top: 1px solid var(--color-border);
+  margin: 2rem 0 1.5rem;
+}
+.footer-copy, .footer-tagline {
+  font-size: .9rem;
+  color: var(--color-dirty-white);
+}
+.footer-tagline { margin-top: .5rem; }
+.footer-bottom {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: .75rem 2rem;
+  margin-top: 2rem;
+}
+.footer-location {
+  color: var(--color-cheese-light);
+  font-family: var(--font-heading);
+  font-size: .85rem;
+  letter-spacing: .08em;
+}
+.footer-credit {
+  margin-left: auto;
+  font-size: .75rem;
+  color: var(--color-dirty-white);
+}
+.footer-credit span { color: var(--color-cheese-light); }
+.footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
+.footer-credit a:hover { color: var(--color-cheese-light); }
+.footer-credit a:focus-visible { outline: 2px solid var(--color-cheese-light); outline-offset: 4px; }
 .easter-egg-wrapper {
   display: flex;
   align-items: center;
@@ -2172,11 +2209,12 @@ body.party-mode .party-mode-banner {
   }
 
   /* Footer */
-  .footer-content {
+  .footer-bottom {
     flex-direction: column;
-    text-align: center;
-    gap: 1.5rem;
+    align-items: flex-start;
   }
+
+  .footer-credit { margin-left: 0; }
 
   .easter-egg-wrapper {
     flex-direction: column;

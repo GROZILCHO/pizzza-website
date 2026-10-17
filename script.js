@@ -1,5 +1,5 @@
 /**
- * PIZZZA – 25 YEARS SKA-CORE & PIZZA
+ * PIZZZA – SKA-CORE & PIZZA • EST. 1999
  * Vanilla JS Application & Web Audio API Engine
  */
 
@@ -816,9 +816,9 @@ function initEasterEggPartyMode() {
    ========================================================================== */
 const translations = {
   bg: {
-    top_bar_tag: '🍕 ОФИЦИАЛЕН САЙТ • ВАРНА 1999–2026',
+    top_bar_tag: '🍕 ОФИЦИАЛЕН САЙТ • ВАРНА • ОТ 1999 Г.',
     top_social_label: 'СЛУШАЙ & СЛЕДВАЙ:',
-    logo_badge: '25 ГОДИНИ',
+    logo_badge: 'EST. 1999',
     nav_mixer: 'Миксер',
     nav_jukebox: 'Дискография',
     nav_videos: 'Клипове',
@@ -826,13 +826,16 @@ const translations = {
     nav_tour_merch: 'Турне & Мърч',
     nav_gallery: 'Галерия',
     nav_booking: 'Контакти',
-    hero_sticker_1: '★ 1999–2026 ★',
+    hero_sticker_1: '★ EST. 1999 ★',
     hero_sticker_2: '100% ЧИСТ СКА-КОР',
     hero_sticker_3: 'ГРЪМОГЛАСЕН БРАС',
-    hero_title_1: '25 ГОДИНИ',
+    seo_title: 'PIZZZA – Официален сайт | Ска-кор от Варна, от 1999 г.',
+    seo_description: 'Официалният сайт на PIZZZA – ска-кор група от Варна, България, основана през 1999 г. Музика, история, концерти, демо мърч и архив.',
+    hero_image_alt: 'PIZZZA на живо пред публиката – ска-кор концерт, Варна',
+    hero_title_1: 'ОТ 1999 Г.',
     hero_title_2: 'SKA-CORE CHAOS',
     hero_title_3: '& PIZZZA!',
-    hero_subtext: 'Четвърт век безкомпромисен ъндърграунд, брас секция, пого пред сцената, препечени корички и високи децибели. Включи се в PIZZZA отбора!',
+    hero_subtext: 'Над четвърт век безкомпромисен ъндърграунд, брас секция, пого пред сцената, няколко дългосвирещи тави и високи децибели. Включи се в PIZZZA отбора!',
     hero_cta_mixer: '<span class="btn-icon">🔥</span><span>ПОРЪЧАЙ МИКСА (Пусни всичко)</span>',
     hero_cta_dates: '<span>ПРЕДСТОЯЩИ ДАТИ</span>',
     mixer_tag: 'ИНТЕРАКТИВЕН УЕБ АУДИО МИКСЕР',
@@ -901,13 +904,13 @@ const translations = {
     btn_dish_inspect: 'Опитай парчето ➜',
     btn_dish_new_era: '★ НОВА ЕРА ★',
     tour_badge: 'КАЛЕНДАР ЗА ПОГО НА ЖИВО',
-    tour_title: 'ТУРНЕ „25 ГОДИНИ НА ЖАРТА“',
+    tour_title: 'НА ЖИВО: PIZZZA',
     tour_sub: 'Ела да се потиш пред сцената. Билети на входа и онлайн.',
     btn_fb_event: 'ФБ СЪБИТИЕ',
     merch_badge: 'ОФИЦИАЛЕН DIY МЪРЧ',
     merch_title: 'МЕНЮ С МЪРЧ ЗА ФЕНОВЕ',
     merch_sub: 'Демо артикули.',
-    merch_item_1_title: 'Тениска „25 Години Ска & Пица“',
+    merch_item_1_title: 'Тениска „PIZZZA Ска & Пица“',
     merch_item_2_title: '12" Червен Винил „Златни Корички“',
     merch_item_3_title: 'Сет Нашивки + 10 Стикери за кутии',
     merch_item_4_title: 'Метална отварачка „Pizzza Ска-Кор“',
@@ -918,7 +921,7 @@ const translations = {
     btn_order: 'Поръчай ➔',
     gallery_badge: 'СПОМЕНИ И ПОГО',
     gallery_title: 'СТЕНА НА ЛУДОСТТА (ПОЛАРОИДЕН АРХИВ)',
-    gallery_desc: 'Пънк архив от последните две десетилетия и половина. Зад кулисите, репетиционната и сцената.',
+    gallery_desc: 'Пънк архив от 1999 г. насам. Зад кулисите, репетиционната и сцената.',
     art_1: 'СКОК В ТЪЛПАТА',
     art_2: 'БРАС АТАКА',
     art_3: 'БЕКСТЕЙДЖ',
@@ -953,14 +956,17 @@ const translations = {
     rider_item_5_title: 'Атмосфера:',
     rider_item_5_desc: 'Приятелско отношение, фенове готови за ска танц и суров ъндърграунд звук.',
     contacts_label: 'Директен контакт с мениджмънта:',
-    footer_copy: '© 1999–2026 PIZZZA Ска-Кор (Варна). Всички права запазени за ъндърграунда. Създадено с чист HTML, CSS и Web Audio API без консерванти.',
+    footer_description: 'СКА-КОР ОТ ВАРНА · ОТ 1999 Г.',
+    footer_copy: '© {year} PIZZZA. Всички права запазени.',
+    footer_tagline: 'Безкомпромисен ъндърграунд. Брас секция. Пого и високи децибели.',
+    footer_location: 'ВАРНА, БЪЛГАРИЯ',
     easter_hint: 'Кликни парчето за тайна съставка!',
     party_banner: '🚨 ПАРТИ РЕЖИМ: МЕЛЕ ПРЕД СЦЕНАТА! СКА-КОР ОВЪРДРАЙВ! 🚨'
   },
   en: {
-    top_bar_tag: '🍕 OFFICIAL BAND SITE • VARNA 1999–2026',
+    top_bar_tag: '🍕 OFFICIAL BAND SITE • VARNA • EST. 1999',
     top_social_label: 'LISTEN & FOLLOW:',
-    logo_badge: '25 YEARS',
+    logo_badge: 'EST. 1999',
     nav_mixer: 'Mixer',
     nav_jukebox: 'Discography',
     nav_videos: 'Videos',
@@ -968,13 +974,16 @@ const translations = {
     nav_tour_merch: 'Tour & Merch',
     nav_gallery: 'Gallery',
     nav_booking: 'Contacts',
-    hero_sticker_1: '★ 1999–2026 ★',
+    hero_sticker_1: '★ EST. 1999 ★',
     hero_sticker_2: '100% RAW SKA-CORE',
     hero_sticker_3: 'LOUD BRASS SECTION',
-    hero_title_1: '25 YEARS',
+    seo_title: 'PIZZZA – Official Website | Ska-core from Varna, since 1999',
+    seo_description: 'The official website of PIZZZA, a ska-core band from Varna, Bulgaria, founded in 1999. Music, history, live shows, demo merch and the band archive.',
+    hero_image_alt: 'PIZZZA live on stage – ska-core concert, Varna',
+    hero_title_1: 'SINCE 1999',
     hero_title_2: 'SKA-CORE CHAOS',
     hero_title_3: '& PIZZZA!',
-    hero_subtext: 'A quarter century of uncompromising underground, brass section, stage moshing, crispy crusts and loud decibels. Join the PIZZZA crew!',
+    hero_subtext: 'Over a quarter of a century of uncompromising underground, a roaring brass section, mosh pits, a few full-length records fresh from the oven and decibels cranked high. Join the PIZZZA crew!',
     hero_cta_mixer: '<span class="btn-icon">🔥</span><span>ORDER THE MIX (Play All)</span>',
     hero_cta_dates: '<span>TOUR DATES</span>',
     mixer_tag: 'INTERACTIVE WEB AUDIO MIXER',
@@ -1043,13 +1052,13 @@ const translations = {
     btn_dish_inspect: 'Taste slice ➜',
     btn_dish_new_era: '★ NEW ERA ★',
     tour_badge: 'LIVE MOSH CALENDAR',
-    tour_title: '"25 YEARS ON COALS" TOUR',
+    tour_title: 'PIZZZA LIVE',
     tour_sub: 'Come sweat in the pit. Tickets at door and online.',
     btn_fb_event: 'FB EVENT',
     merch_badge: 'OFFICIAL DIY MERCH',
     merch_title: 'FAN MERCH MENU',
     merch_sub: 'Demo items.',
-    merch_item_1_title: 'T-Shirt "25 Yrs Ska & Pizza"',
+    merch_item_1_title: 'T-Shirt "PIZZZA Ska & Pizza"',
     merch_item_2_title: '12" Red Vinyl "Greatest Crusts"',
     merch_item_3_title: 'Patches Set + 10 Box Stickers',
     merch_item_4_title: 'Metal Bottle Opener "Pizzza Ska-Core"',
@@ -1060,7 +1069,7 @@ const translations = {
     btn_order: 'Order ➔',
     gallery_badge: 'MEMORIES & MOSH',
     gallery_title: 'WALL OF MADNESS (POLAROID ARCHIVE)',
-    gallery_desc: 'Punk archive from the past 25 years. Backstage, rehearsal room and loud stages.',
+    gallery_desc: 'Punk archive since 1999. Backstage, rehearsal room and loud stages.',
     art_1: 'STAGE DIVE',
     art_2: 'BRASS ATTACK',
     art_3: 'BACKSTAGE',
@@ -1095,7 +1104,10 @@ const translations = {
     rider_item_5_title: 'Atmosphere:',
     rider_item_5_desc: 'Friendly vibes, fans ready to skank, and raw loud underground sound.',
     contacts_label: 'Direct management contact:',
-    footer_copy: '© 1999–2026 PIZZZA Ska-Core (Varna). All underground rights reserved. Handcrafted with pure HTML, CSS and Web Audio API without preservatives.',
+    footer_description: 'SKA-CORE FROM VARNA · SINCE 1999',
+    footer_copy: '© {year} PIZZZA. All rights reserved.',
+    footer_tagline: 'Uncompromising underground. Brass section. Pogo and high decibels.',
+    footer_location: 'VARNA, BULGARIA',
     easter_hint: 'Click the slice for secret ingredient!',
     party_banner: '🚨 PARTY MODE: STAGE MOSHPIT! SKA-CORE OVERDRIVE! 🚨'
   }
@@ -1129,6 +1141,19 @@ function initLanguageSwitcher() {
       }
     });
 
+    // Keep the existing SEO fields and hero photo description in the selected language.
+    document.title = dict.seo_title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', dict.seo_description);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', dict.seo_title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', dict.seo_description);
+    document.querySelector('.hero-bg-photo')?.setAttribute('alt', dict.hero_image_alt);
+
+    const footerCopy = document.querySelector('.footer-copy');
+    if (footerCopy) {
+      const year = new Intl.DateTimeFormat('en', { year: 'numeric', timeZone: 'Europe/Sofia' }).format(new Date());
+      footerCopy.textContent = dict.footer_copy.replace('{year}', year);
+    }
+
     // Update form placeholders
     const nameInput = document.getElementById('b-name');
     const emailInput = document.getElementById('b-email');
@@ -1156,7 +1181,7 @@ function initLanguageSwitcher() {
 /* Inline demo merchandise: catalog, state, operations, localization and rendering. */
 const MERCH_CONFIG = Object.freeze({ demoMode: true });
 const MERCH_PRODUCTS = Object.freeze({
-  'anniversary-shirt': { price: 3500, names: { bg: 'Тениска „25 Години Ска & Пица“', en: 'T-Shirt "25 Yrs Ska & Pizza"' }, sizes: ['S', 'M', 'L', 'XL', '2XL'] },
+  'anniversary-shirt': { price: 3500, names: { bg: 'Тениска „PIZZZA Ска & Пица“', en: 'T-Shirt "PIZZZA Ska & Pizza"' }, sizes: ['S', 'M', 'L', 'XL', '2XL'] },
   'red-vinyl': { price: 4500, names: { bg: '12" Червен Винил „Златни Корички“', en: '12" Red Vinyl "Greatest Crusts"' } },
   'patches-stickers': { price: 1500, names: { bg: 'Сет Нашивки + 10 Стикери за кутии', en: 'Patches Set + 10 Box Stickers' } },
   'bottle-opener': { price: 1000, names: { bg: 'Метална отварачка „Pizzza Ска-Кор“', en: 'Metal Bottle Opener "Pizzza Ska-Core"' } }
