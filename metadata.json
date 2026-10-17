@@ -1,0 +1,8 @@
+{
+  "name": "Remix Pizzza Website",
+  "description": "Официален юбилеен уебсайт за 25 години на българската ска-кор банда Pizzza. Интерактивен 4-канален DJ Pizza-Mixer с Web Audio API, дискография, турне, мърч и архив.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}

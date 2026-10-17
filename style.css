@@ -1,0 +1,2226 @@
+/* ==========================================================================
+   PIZZZA – 25 YEARS SKA-CORE & PIZZA
+   DIY Punk & 2-Tone Aesthetic Stylesheet
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. CSS Custom Properties (Theme Colors & Typography)
+   -------------------------------------------------------------------------- */
+:root {
+  --color-punk-red: #E63946;
+  --color-cheese: #F4A261;
+  --color-cheese-light: #E9C46A;
+  --color-dark-bg: #111A24;
+  --color-dark-card: #1D3557;
+  --color-bone-white: #F1FAEE;
+  --color-dirty-white: #E5EADF;
+  --color-black: #0B0F14;
+  --color-border: #2A4365;
+  --color-accent-teal: #2A9D8F;
+  
+  --font-display: 'Permanent Marker', cursive, sans-serif;
+  --font-subdisplay: 'Bungee', cursive, sans-serif;
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Work Sans', sans-serif;
+
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s ease;
+  --box-shadow-punk: 5px 5px 0px #000;
+  --box-shadow-heavy: 8px 8px 0px #000;
+}
+
+/* --------------------------------------------------------------------------
+   2. Reset & Global Base
+   -------------------------------------------------------------------------- */
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--color-black);
+  color: var(--color-bone-white);
+}
+
+body {
+  font-family: var(--font-body);
+  line-height: 1.6;
+  background: radial-gradient(circle at 50% 20%, #1A2838 0%, #0B0F14 100%);
+  background-attachment: fixed;
+  position: relative;
+  width: 100%;
+}
+
+img, iframe, video {
+  max-width: 100%;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+}
+
+.container {
+  width: 92%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 2-Tone Ska Checkerboard Pattern */
+.checkerboard-bar {
+  height: 16px;
+  background-image: linear-gradient(45deg, #000 25%, transparent 25%), 
+                    linear-gradient(-45deg, #000 25%, transparent 25%), 
+                    linear-gradient(45deg, transparent 75%, #000 75%), 
+                    linear-gradient(-45deg, transparent 75%, #000 75%);
+  background-size: 14px 14px;
+  background-position: 0 0, 0 7px, 7px -7px, -7px 0px;
+  background-color: #fff;
+  border-top: 2px solid #000;
+  border-bottom: 2px solid #000;
+}
+
+/* Section Headings */
+.section-badge-wrapper {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.tag-badge {
+  display: inline-block;
+  background: var(--color-punk-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.8rem;
+  letter-spacing: 2px;
+  transform: rotate(-2deg);
+  box-shadow: 3px 3px 0 #000;
+  margin-bottom: 0.8rem;
+}
+
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  color: var(--color-cheese-light);
+  text-shadow: 3px 3px 0px #000, 5px 5px 0px var(--color-punk-red);
+  line-height: 1.2;
+}
+
+.section-description {
+  max-width: 700px;
+  margin: 1rem auto 0;
+  color: var(--color-dirty-white);
+  font-size: 1.1rem;
+}
+
+/* --------------------------------------------------------------------------
+   2.5. Top Utility Bar (Bilingual Switcher & Social Links)
+   -------------------------------------------------------------------------- */
+.top-utility-bar {
+  background-color: #0b1119;
+  border-bottom: 2px solid #000;
+  position: relative;
+  z-index: 1001;
+}
+
+.top-utility-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.35rem 4%;
+  max-width: 1300px;
+  margin: 0 auto;
+  gap: 1rem;
+}
+
+.top-bar-left {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.top-bar-tag {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.2px;
+  color: var(--color-cheese-light);
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.top-bar-right {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.top-social-label {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: var(--color-dirty-white);
+  text-transform: uppercase;
+}
+
+/* --------------------------------------------------------------------------
+   3. Header & Sticky Navigation
+   -------------------------------------------------------------------------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: rgba(17, 26, 36, 0.96);
+  backdrop-filter: blur(8px);
+  border-bottom: 3px solid var(--color-punk-red);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.8rem 4%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #fff;
+  transition: transform var(--transition-fast);
+}
+
+.brand-logo:hover {
+  transform: scale(1.05) rotate(-2deg);
+}
+
+.brand-logo-img {
+  width: 52px;
+  height: 52px;
+  padding: 4px;
+  background: #000;
+  border-radius: 50%;
+  object-fit: contain;
+  border: 3px solid var(--color-cheese-light);
+  box-shadow: 0 0 12px rgba(255, 209, 102, 0.4), 2px 2px 5px rgba(0, 0, 0, 0.7);
+  flex-shrink: 0;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.brand-logo:hover .brand-logo-img {
+  transform: scale(1.08) rotate(6deg);
+  box-shadow: 0 0 18px rgba(255, 209, 102, 0.7), 3px 3px 6px rgba(0, 0, 0, 0.85);
+}
+
+.logo-slice {
+  font-size: 2rem;
+  animation: slice-bounce 2s infinite ease-in-out;
+}
+
+.logo-text {
+  color: var(--color-cheese-light);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 var(--color-punk-red);
+}
+
+.logo-badge {
+  font-family: var(--font-heading);
+  background: var(--color-punk-red);
+  color: #fff;
+  font-size: 0.7rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 3px;
+  box-shadow: 2px 2px 0 #000;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+}
+
+.nav-link {
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-bone-white);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+  position: relative;
+}
+
+.nav-link:hover {
+  color: var(--color-cheese);
+  transform: translateY(-2px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+}
+
+.lang-switch-group {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  background: var(--color-dark-card);
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  padding: 0.2rem 0.4rem;
+}
+
+.lang-btn {
+  background: transparent;
+  color: var(--color-dirty-white);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.lang-btn:hover {
+  color: var(--color-cheese-light);
+}
+
+.lang-btn.active {
+  background: var(--color-punk-red);
+  color: #fff;
+  box-shadow: 1px 1px 0 #000;
+}
+
+.lang-divider {
+  color: var(--color-cheese);
+  font-weight: bold;
+  font-size: 0.85rem;
+}
+
+.social-icons {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.social-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: var(--color-dark-card);
+  color: #fff;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  transition: all var(--transition-fast);
+}
+
+.social-btn:hover {
+  background: var(--color-punk-red);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+.social-btn.spotify:hover {
+  background: #1DB954;
+}
+
+.social-btn.youtube:hover {
+  background: #FF0000;
+}
+
+.social-btn.facebook:hover {
+  background: #1877F2;
+}
+
+.social-btn.instagram:hover {
+  background: #E1306C;
+}
+
+.menu-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: transparent;
+  padding: 5px;
+}
+
+.menu-toggle .bar {
+  width: 26px;
+  height: 3px;
+  background: var(--color-bone-white);
+  transition: 0.3s;
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section
+   -------------------------------------------------------------------------- */
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 5rem 1rem;
+  border-bottom: 5px solid #000;
+  background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)), url('src/assets/images/pizzza-hero_live_concert.jpg') no-repeat center center/cover;
+  overflow: hidden;
+}
+
+.hero-backdrop {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(circle at 50% 30%, rgba(255, 183, 3, 0.08), transparent 70%);
+  z-index: 1;
+  overflow: hidden;
+}
+
+.hero-bg-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35;
+  filter: contrast(1.15) brightness(0.85);
+  pointer-events: none;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-stickers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sticker {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.35rem 0.8rem;
+  border: 2px dashed #000;
+  box-shadow: 3px 3px 0 #000;
+}
+
+.punk-sticker {
+  background: var(--color-punk-red);
+  color: #fff;
+  transform: rotate(-3deg);
+}
+
+.pizza-sticker {
+  background: var(--color-cheese-light);
+  color: #000;
+  transform: rotate(2.5deg);
+}
+
+.horn-sticker {
+  background: var(--color-accent-teal);
+  color: #fff;
+  transform: rotate(-1.5deg);
+}
+
+.hero-title {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 1.8rem;
+}
+
+.hero-title .line-1 {
+  font-family: var(--font-heading);
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: 4px;
+}
+
+.hero-title .line-2 {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 8vw, 5.5rem);
+  color: var(--color-punk-red);
+  text-shadow: 4px 4px 0px #000, 8px 8px 0px var(--color-cheese);
+  line-height: 1;
+}
+
+.hero-title .line-3 {
+  font-family: var(--font-subdisplay);
+  font-size: clamp(2rem, 6vw, 4.2rem);
+  color: var(--color-cheese-light);
+  text-shadow: 3px 3px 0px #000;
+  letter-spacing: 3px;
+}
+
+.hero-subtext {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  max-width: 750px;
+  margin: 0 auto 2.5rem;
+  color: var(--color-dirty-white);
+  font-weight: 400;
+}
+
+.hero-cta-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1.2rem;
+}
+
+/* Button Component */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.9rem 1.8rem;
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  border: 3px solid #000;
+  box-shadow: var(--box-shadow-punk);
+  transition: all var(--transition-fast);
+}
+
+.btn:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--box-shadow-heavy);
+}
+
+.btn:active {
+  transform: translate(2px, 2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+.btn-primary {
+  background: var(--color-punk-red);
+  color: #fff;
+}
+
+.btn-primary:hover {
+  background: #ff4757;
+}
+
+.btn-secondary {
+  background: var(--color-cheese);
+  color: #000;
+}
+
+.btn-hero {
+  font-size: 1.3rem;
+  padding: 1.1rem 2.2rem;
+}
+
+.pulse-glow {
+  animation: pulse-border 2.5s infinite;
+}
+
+/* --------------------------------------------------------------------------
+   5. Interactive DJ Pizza-Mixer Section
+   -------------------------------------------------------------------------- */
+.mixer-section {
+  padding: 6rem 0;
+  background: #111A24;
+  border-bottom: 5px solid #000;
+}
+
+/* Master Console */
+.master-console {
+  background: #1D3557;
+  border: 4px solid #000;
+  box-shadow: var(--box-shadow-heavy);
+  padding: 1.8rem;
+  margin-bottom: 3.5rem;
+  position: relative;
+}
+
+.console-label {
+  position: absolute;
+  top: -16px;
+  left: 20px;
+  background: #000;
+  color: var(--color-cheese-light);
+  font-family: var(--font-subdisplay);
+  font-size: 0.9rem;
+  padding: 0.2rem 0.8rem;
+  border: 2px solid var(--color-punk-red);
+}
+
+.master-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.btn-master-play {
+  background: #2ECC71;
+  color: #000;
+  font-weight: 800;
+  padding: 0.8rem 1.6rem;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.btn-master-pause {
+  background: #F1C40F;
+  color: #000;
+  font-weight: 800;
+  padding: 0.8rem 1.6rem;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.btn-master-reset {
+  background: var(--color-punk-red);
+  color: #fff;
+  font-weight: 800;
+  padding: 0.8rem 1.6rem;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+}
+
+.master-sliders {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  border-top: 2px dashed rgba(255, 255, 255, 0.2);
+  padding-top: 1.2rem;
+}
+
+.fader-group {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-grow: 1;
+  max-width: 500px;
+}
+
+.fader-group label {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  color: var(--color-cheese-light);
+  white-space: nowrap;
+}
+
+.fader {
+  flex-grow: 1;
+  accent-color: var(--color-punk-red);
+  height: 10px;
+  cursor: pointer;
+}
+
+.fader-value {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  min-width: 45px;
+}
+
+.tempo-group {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.tempo-tag {
+  font-family: var(--font-heading);
+  background: #000;
+  padding: 0.4rem 0.8rem;
+  border: 2px solid var(--color-border);
+}
+
+.sync-indicator {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: #2ECC71;
+  letter-spacing: 1px;
+}
+
+/* 4 Pizza Decks Grid */
+.pizza-decks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 2rem;
+}
+
+.deck-card {
+  background: #172433;
+  border: 4px solid #000;
+  box-shadow: var(--box-shadow-punk);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast);
+}
+
+.deck-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--color-cheese);
+}
+
+.deck-header {
+  border-bottom: 2px solid #000;
+  padding-bottom: 0.8rem;
+  margin-bottom: 1.2rem;
+}
+
+.track-num {
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  color: var(--color-punk-red);
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.track-name {
+  font-family: var(--font-subdisplay);
+  font-size: 1.35rem;
+  color: #fff;
+  margin: 0.2rem 0;
+}
+
+.topping-badge {
+  font-size: 0.85rem;
+  color: var(--color-cheese-light);
+  font-weight: 600;
+}
+
+/* Turntable & Pizza Discs */
+.turntable-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  max-width: 230px;
+  margin: 0 auto 1.5rem;
+  background: #0d131a;
+  border-radius: 50%;
+  padding: 8px;
+  box-shadow: inset 0 0 15px #000, 0 4px 10px rgba(0, 0, 0, 0.5);
+  border: 3px solid #000;
+}
+
+.pizza-record {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.8);
+  border: 8px solid #D48842; /* Crust */
+  animation: pizza-spin 2.2s linear infinite;
+  animation-play-state: paused;
+}
+
+.pizza-record.is-spinning {
+  animation-play-state: running;
+}
+
+/* Pizza Crust/Sauce Styles */
+.pizza-vocals {
+  background: radial-gradient(circle, #E63946 0%, #C42633 100%);
+}
+
+.pizza-guitars {
+  background: radial-gradient(circle, #F4A261 0%, #E76F51 100%);
+}
+
+.pizza-bass {
+  background: radial-gradient(circle, #E9C46A 0%, #D8A437 100%);
+}
+
+.pizza-drums {
+  background: radial-gradient(circle, #D62828 0%, #A81E1E 100%);
+}
+
+/* Vinyl Grooves */
+.vinyl-groove {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.groove-1 { width: 85%; height: 85%; }
+.groove-2 { width: 68%; height: 68%; }
+.groove-3 { width: 50%; height: 50%; }
+
+/* Toppings */
+.pepperoni {
+  position: absolute;
+  width: 24px;
+  height: 24px;
+  background: #7B1113;
+  border-radius: 50%;
+  border: 2px solid #5A0A0C;
+  box-shadow: inset 2px 2px 4px rgba(0,0,0,0.5);
+}
+.pep-1 { top: 20%; left: 30%; }
+.pep-2 { top: 30%; left: 70%; }
+.pep-3 { top: 65%; left: 25%; }
+.pep-4 { top: 70%; left: 65%; }
+.pep-5 { top: 45%; left: 45%; }
+
+.jalapeno {
+  position: absolute;
+  width: 18px;
+  height: 18px;
+  background: #2A9D8F;
+  border-radius: 50%;
+  border: 2px solid #1F7066;
+}
+.jal-1 { top: 25%; left: 35%; }
+.jal-2 { top: 40%; left: 75%; }
+.jal-3 { top: 75%; left: 45%; }
+.jal-4 { top: 60%; left: 20%; }
+
+.mushroom {
+  position: absolute;
+  width: 20px;
+  height: 14px;
+  background: #E5EADF;
+  border-radius: 10px 10px 4px 4px;
+  border: 2px solid #8D99AE;
+}
+.mush-1 { top: 28%; left: 25%; transform: rotate(20deg); }
+.mush-2 { top: 30%; left: 65%; transform: rotate(-35deg); }
+.mush-3 { top: 70%; left: 30%; transform: rotate(45deg); }
+.mush-4 { top: 65%; left: 70%; transform: rotate(-15deg); }
+
+.olive {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border-radius: 50%;
+  border: 3px solid #2B2D42;
+}
+.oli-1 { top: 22%; left: 40%; }
+.oli-2 { top: 45%; left: 75%; }
+.oli-3 { top: 70%; left: 55%; }
+.oli-4 { top: 60%; left: 25%; }
+.oli-5 { top: 35%; left: 20%; }
+
+/* Center Label */
+.center-label {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  background: #000;
+  border-radius: 50%;
+  border: 2px solid var(--color-cheese-light);
+  transform: translate(-50%, -50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 5;
+}
+
+.label-title {
+  font-family: var(--font-subdisplay);
+  font-size: 0.55rem;
+  color: var(--color-punk-red);
+}
+
+.label-sub {
+  font-family: var(--font-heading);
+  font-size: 0.5rem;
+  color: #fff;
+  letter-spacing: 0.5px;
+}
+
+.spindle-hole {
+  width: 8px;
+  height: 8px;
+  background: #2B2D42;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+/* Tonearm */
+.tonearm {
+  position: absolute;
+  top: -6px;
+  right: -2px;
+  width: 18px;
+  height: 90px;
+  background: #888;
+  border: 2px solid #000;
+  border-radius: 4px;
+  transform-origin: top center;
+  transform: rotate(18deg);
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  pointer-events: none;
+  transition: transform 0.4s ease;
+  z-index: 10;
+}
+
+.deck-card.is-active .tonearm {
+  transform: rotate(38deg);
+}
+
+/* Deck Controls */
+.deck-action-buttons {
+  display: flex;
+  gap: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.track-btn {
+  flex: 1;
+  padding: 0.6rem 0.5rem;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+  transition: all var(--transition-fast);
+}
+
+.btn-deck-play {
+  background: #2ECC71;
+  color: #000;
+}
+
+.btn-deck-play.active-pause {
+  background: #F1C40F;
+}
+
+.btn-deck-mute {
+  background: #34495E;
+  color: #fff;
+}
+
+.btn-deck-mute.is-muted {
+  background: var(--color-punk-red);
+  color: #fff;
+}
+
+.fader-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.fader-row label {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+}
+
+.vol-indicator {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  min-width: 38px;
+}
+
+.vu-meter {
+  height: 6px;
+  background: #0B0F14;
+  border: 1px solid #000;
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.vu-bar {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #2ECC71 0%, #F1C40F 70%, #E63946 100%);
+  transition: width 0.1s ease;
+}
+
+/* --------------------------------------------------------------------------
+   6. Spotify Jukebox Section
+   -------------------------------------------------------------------------- */
+.jukebox-section {
+  padding: 6rem 0;
+  background: linear-gradient(rgba(0,0,0,0.80), rgba(0,0,0,0.90)), url('src/assets/images/jukebox-background-image.jpg') no-repeat center center/cover;
+  border-bottom: 5px solid #000;
+}
+
+.jukebox-cabinet {
+  max-width: 850px;
+  margin: 0 auto;
+  background: #111;
+  border: 6px solid #000;
+  border-radius: 30px 30px 10px 10px;
+  box-shadow: var(--box-shadow-heavy), 0 0 40px rgba(230, 57, 70, 0.3);
+  padding: 2rem;
+  position: relative;
+}
+
+.jukebox-arch {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.neon-tube {
+  height: 8px;
+  margin: 0.4rem 0;
+  border-radius: 4px;
+}
+
+.neon-tube.red {
+  background: var(--color-punk-red);
+  box-shadow: 0 0 15px var(--color-punk-red);
+}
+
+.neon-tube.yellow {
+  background: var(--color-cheese-light);
+  box-shadow: 0 0 15px var(--color-cheese-light);
+}
+
+.jukebox-title {
+  font-family: var(--font-subdisplay);
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
+  color: var(--color-cheese-light);
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 0 var(--color-punk-red);
+  margin-top: 0.8rem;
+}
+
+.jukebox-prompt {
+  text-align: center;
+  font-family: var(--font-heading);
+  color: var(--color-dirty-white);
+  font-size: 0.95rem;
+  margin-bottom: 1.5rem;
+  letter-spacing: 1px;
+}
+
+.spotify-embed-container {
+  box-shadow: 4px 4px 0 #000;
+  border: 3px solid #000;
+  border-radius: 15px;
+  overflow: hidden;
+  background: #000;
+}
+
+.jukebox-controls-replica {
+  margin-top: 2rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.2rem;
+  background: #1D2D44;
+  padding: 1rem 1.5rem;
+  border: 3px solid #000;
+}
+
+.coin-slot {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  color: var(--color-cheese-light);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  user-select: none;
+  padding: 0.35rem 0.75rem;
+  background: rgba(0, 0, 0, 0.4);
+  border: 2px dashed var(--color-cheese);
+  transition: transform 0.15s ease, background 0.15s ease, border-color 0.15s ease;
+}
+
+.coin-slot:hover {
+  transform: scale(1.04);
+  background: rgba(230, 57, 70, 0.25);
+  border-color: var(--color-punk-red);
+}
+
+.coin-slot:active {
+  transform: scale(0.96);
+}
+
+.jukebox-cabinet {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.jukebox-cabinet.jukebox-flash {
+  box-shadow: 0 0 35px var(--color-cheese), 0 0 70px var(--color-punk-red);
+  transform: scale(1.008);
+}
+
+.selection-grid {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.jb-btn {
+  background: #000;
+  color: #fff;
+  border: 2px solid var(--color-cheese);
+  padding: 0.4rem 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
+.jb-btn.active, .jb-btn:hover {
+  background: var(--color-punk-red);
+  color: #fff;
+}
+
+/* --------------------------------------------------------------------------
+   7. YouTube Video Stage
+   -------------------------------------------------------------------------- */
+.video-stage-section {
+  padding: 6rem 0;
+  background: #0E1620;
+  border-bottom: 5px solid #000;
+}
+
+.video-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2.2rem;
+}
+
+.video-card {
+  background: #172433;
+  border: 4px solid #000;
+  box-shadow: var(--box-shadow-punk);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.video-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.video-info {
+  padding: 1.4rem;
+}
+
+.vid-tag {
+  background: var(--color-punk-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  display: inline-block;
+  margin-bottom: 0.6rem;
+}
+
+.video-heading {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  line-height: 1.3;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.video-desc {
+  font-size: 0.95rem;
+  color: var(--color-dirty-white);
+  margin-bottom: 0.8rem;
+}
+
+.video-ext-link {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--color-cheese-light);
+  background: #0B1017;
+  padding: 0.3rem 0.6rem;
+  border: 2px solid var(--color-cheese);
+  box-shadow: 2px 2px 0 #000;
+  transition: all var(--transition-fast);
+}
+
+.video-ext-link:hover {
+  background: var(--color-punk-red);
+  color: #fff;
+  border-color: #fff;
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 #000;
+}
+
+/* --------------------------------------------------------------------------
+   8. The Menu of Time (Timeline)
+   -------------------------------------------------------------------------- */
+.timeline-section {
+  padding: 6rem 0;
+  background: radial-gradient(circle at 50% 50%, #162436 0%, #0D141E 100%);
+  border-bottom: 5px solid #000;
+}
+
+.pizza-menu-board {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #FFFDF7;
+  color: #111;
+  border: 6px solid #000;
+  box-shadow: var(--box-shadow-heavy);
+  padding: 2.5rem;
+  position: relative;
+}
+
+.pizza-menu-board::before {
+  content: "";
+  position: absolute;
+  top: 6px;
+  left: 6px;
+  right: 6px;
+  bottom: 6px;
+  border: 2px dashed #D48842;
+  pointer-events: none;
+}
+
+.menu-board-header {
+  text-align: center;
+  border-bottom: 3px double #000;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.menu-decor-fork {
+  font-size: 2.2rem;
+}
+
+.menu-board-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  color: var(--color-punk-red);
+}
+
+.menu-board-sub {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  color: #555;
+  text-transform: uppercase;
+}
+
+.timeline-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.timeline-dish {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.2rem;
+  background: #F9F5EC;
+  border: 2px solid #333;
+  box-shadow: 3px 3px 0 #000;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.timeline-dish:hover {
+  background: #FFF;
+  border-color: var(--color-punk-red);
+  transform: translateX(6px);
+  box-shadow: 6px 6px 0 var(--color-punk-red);
+}
+
+.dish-year {
+  font-family: var(--font-subdisplay);
+  font-size: 1.4rem;
+  background: #000;
+  color: var(--color-cheese-light);
+  padding: 0.5rem 0.8rem;
+  min-width: 85px;
+  text-align: center;
+}
+
+.dish-content {
+  flex-grow: 1;
+}
+
+.dish-title {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: #111;
+  margin-bottom: 0.2rem;
+}
+
+.dish-ingredients {
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.btn-dish-inspect {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-punk-red);
+  white-space: nowrap;
+}
+
+.gold-pill {
+  background: #F1C40F;
+  color: #000 !important;
+  padding: 0.3rem 0.8rem;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Modal */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(5px);
+  z-index: 2000;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.modal-overlay.open {
+  display: flex;
+}
+
+.modal-box {
+  background: #FFFDF7;
+  color: #111;
+  border: 6px solid #000;
+  box-shadow: 10px 10px 0 var(--color-punk-red);
+  max-width: 650px;
+  width: 100%;
+  padding: 2.5rem;
+  position: relative;
+  animation: modal-pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.modal-close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 2.2rem;
+  background: transparent;
+  color: #000;
+  line-height: 1;
+}
+
+.modal-dish-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 var(--color-punk-red);
+  margin-bottom: 1.2rem;
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   9. Live Shows & DIY Merch
+   -------------------------------------------------------------------------- */
+.tour-merch-section {
+  padding: 6rem 0;
+  background: #111A24;
+  border-bottom: 5px solid #000;
+}
+
+.split-columns-layout {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  gap: 3.5rem;
+}
+
+.column-badge {
+  display: inline-block;
+  background: #000;
+  color: var(--color-cheese-light);
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  padding: 0.25rem 0.6rem;
+  border: 1px solid var(--color-punk-red);
+  margin-bottom: 0.8rem;
+}
+
+.col-heading {
+  font-family: var(--font-display);
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.col-sub {
+  color: var(--color-dirty-white);
+  margin-bottom: 1.8rem;
+}
+
+/* Tour List */
+.gigs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.gig-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #172433;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  padding: 1rem 1.4rem;
+  gap: 1rem;
+}
+
+.gig-date-box {
+  background: var(--color-punk-red);
+  color: #fff;
+  text-align: center;
+  min-width: 65px;
+  padding: 0.4rem;
+  border: 2px solid #000;
+}
+
+.gig-day {
+  display: block;
+  font-family: var(--font-subdisplay);
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.gig-month {
+  display: block;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.gig-details {
+  flex-grow: 1;
+}
+
+.gig-city {
+  font-family: var(--font-heading);
+  font-size: 1.3rem;
+  color: var(--color-cheese-light);
+}
+
+.gig-venue {
+  font-size: 0.95rem;
+  color: var(--color-dirty-white);
+}
+
+.btn-gig {
+  background: var(--color-cheese);
+  color: #000;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.5rem 0.9rem;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* Merch Grid */
+.merch-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 1.2rem;
+}
+
+.merch-card {
+  background: #172433;
+  border: 3px solid #000;
+  box-shadow: 4px 4px 0 #000;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.merch-img-slot {
+  height: 160px;
+  background: #23354C;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 2px solid #000;
+}
+
+.merch-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.merch-card:hover .merch-img {
+  transform: scale(1.08);
+}
+
+.merch-emoji {
+  font-size: 3rem;
+}
+
+.merch-stock {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #000;
+  color: var(--color-cheese-light);
+  font-family: var(--font-heading);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 0.15rem 0.4rem;
+}
+
+.merch-info {
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+}
+
+.merch-title {
+  font-family: var(--font-heading);
+  font-size: 1rem;
+  color: #fff;
+  margin-bottom: 0.4rem;
+}
+
+.merch-price {
+  font-family: var(--font-subdisplay);
+  font-size: 1.15rem;
+  color: var(--color-cheese-light);
+  margin-bottom: 0.8rem;
+}
+
+.btn-merch-inquire {
+  background: var(--color-punk-red);
+  color: #fff;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.4rem;
+  border: 2px solid #000;
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* --------------------------------------------------------------------------
+   10. Wall of Madness (Polaroid Gallery)
+   -------------------------------------------------------------------------- */
+.gallery-section {
+  padding: 6rem 0;
+  background: #0C121A;
+  border-bottom: 5px solid #000;
+}
+
+.polaroid-wall {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2.5rem;
+  padding: 2rem 0;
+}
+
+.polaroid-card {
+  display: block;
+  text-decoration: none;
+  background: #FFFDF7;
+  color: #111;
+  width: 250px;
+  padding: 14px 14px 25px;
+  border: 2px solid #333;
+  box-shadow: 6px 6px 15px rgba(0,0,0,0.7);
+  position: relative;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), z-index 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.polaroid-card:hover {
+  transform: scale(1.1) rotate(0deg) !important;
+  z-index: 50;
+  box-shadow: 10px 10px 25px rgba(230, 57, 70, 0.5);
+  text-decoration: none;
+}
+
+.tape-strip {
+  position: absolute;
+  top: -12px;
+  left: 35%;
+  width: 75px;
+  height: 24px;
+  background: rgba(255, 235, 180, 0.7);
+  border: 1px dashed rgba(0,0,0,0.2);
+  transform: rotate(-3deg);
+}
+
+.polaroid-photo {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #111;
+  margin-bottom: 1rem;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  position: relative;
+}
+
+.polaroid-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.polaroid-card:hover .polaroid-img {
+  transform: scale(1.08);
+}
+
+.photo-placeholder-art {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.photo-placeholder-art::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.18) 0px, rgba(0,0,0,0.18) 2px, transparent 2px, transparent 4px);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.photo-art-icon {
+  font-size: 2.4rem;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.7));
+  z-index: 3;
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.polaroid-card:hover .photo-art-icon {
+  transform: scale(1.2) rotate(6deg);
+}
+
+.bg-art-1 { background: radial-gradient(circle at 50% 30%, rgba(255,200,50,0.4), transparent 65%), linear-gradient(135deg, #E63946, #1D3557); }
+.bg-art-2 { background: radial-gradient(circle at 60% 40%, rgba(255,230,100,0.5), transparent 65%), linear-gradient(135deg, #F4A261, #E76F51); }
+.bg-art-3 { background: radial-gradient(circle at 40% 50%, rgba(42,157,143,0.5), transparent 65%), linear-gradient(135deg, #2A9D8F, #264653); }
+.bg-art-4 { background: radial-gradient(circle at 50% 30%, rgba(255,183,3,0.5), transparent 65%), linear-gradient(135deg, #E9C46A, #E63946); }
+.bg-art-5 { background: radial-gradient(circle at 50% 60%, rgba(241,91,181,0.5), transparent 65%), linear-gradient(135deg, #9B5DE5, #F15BB5); }
+
+.art-badge {
+  font-family: var(--font-subdisplay);
+  font-size: 0.95rem;
+  color: #fff;
+  background: #000;
+  padding: 0.3rem 0.6rem;
+  border: 2px solid #fff;
+  z-index: 3;
+  letter-spacing: 1px;
+}
+
+.polaroid-caption {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  text-align: center;
+  color: #222;
+  text-decoration: none;
+}
+
+/* Individual Polaroid Tilts */
+.pol-tilt-left { transform: rotate(-4deg); }
+.pol-tilt-right { transform: rotate(3.5deg); }
+.pol-tilt-straight { transform: rotate(-1deg); }
+.pol-tilt-left-2 { transform: rotate(-3deg); }
+.pol-tilt-right-2 { transform: rotate(4.5deg); }
+
+/* --------------------------------------------------------------------------
+   11. Contact, Booking & Tech Rider
+   -------------------------------------------------------------------------- */
+.booking-section {
+  padding: 6rem 0;
+  background: #111A24;
+  border-bottom: 5px solid #000;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr));
+  gap: 3rem;
+}
+
+.booking-form-box, .rider-box {
+  background: #172433;
+  border: 4px solid #000;
+  box-shadow: var(--box-shadow-heavy);
+  padding: 2.2rem;
+  max-width: 100%;
+}
+
+.box-title {
+  font-family: var(--font-display);
+  font-size: 1.8rem;
+  color: var(--color-cheese-light);
+  margin-bottom: 0.5rem;
+}
+
+.box-text, .rider-sub {
+  color: var(--color-dirty-white);
+  margin-bottom: 1.5rem;
+}
+
+.booking-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  width: 100%;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  width: 100%;
+}
+
+.form-group-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  width: 100%;
+}
+
+.booking-form label {
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.booking-form input, .booking-form textarea {
+  width: 100%;
+  max-width: 100%;
+  background: #0B1017;
+  border: 2px solid #000;
+  color: #fff;
+  padding: 0.8rem;
+  font-family: inherit;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+.booking-form input:focus, .booking-form textarea:focus {
+  outline: none;
+  border-color: var(--color-punk-red);
+  background: #0F1722;
+}
+
+.btn-submit {
+  width: 100%;
+  margin-top: 0.5rem;
+}
+
+.form-feedback {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  margin-top: 0.8rem;
+  text-align: center;
+}
+
+.form-feedback.success {
+  color: #2ECC71;
+}
+
+/* Rider Checklist */
+.rider-checklist {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.rider-checklist li {
+  display: flex;
+  gap: 1rem;
+  background: #0F1722;
+  border: 2px solid #000;
+  padding: 0.9rem;
+}
+
+.rider-icon {
+  font-size: 1.8rem;
+}
+
+.rider-checklist strong {
+  display: block;
+  font-family: var(--font-heading);
+  color: var(--color-cheese-light);
+  font-size: 1.1rem;
+}
+
+.rider-checklist span {
+  font-size: 0.9rem;
+  color: var(--color-dirty-white);
+}
+
+.direct-contacts {
+  border-top: 2px dashed rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+  font-family: var(--font-heading);
+  font-size: 1rem;
+}
+
+/* --------------------------------------------------------------------------
+   12. Footer & Easter Egg (Party Mode)
+   -------------------------------------------------------------------------- */
+.site-footer {
+  background: #0A0E14;
+}
+
+.footer-content {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 3rem 0;
+  gap: 2rem;
+}
+
+.footer-logo {
+  font-family: var(--font-display);
+  font-size: 2.4rem;
+  color: var(--color-punk-red);
+}
+
+.footer-copy {
+  max-width: 500px;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.easter-egg-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.easter-egg-slice {
+  font-size: 2.5rem;
+  background: #111;
+  border: 2px dashed var(--color-cheese);
+  padding: 0.4rem;
+  border-radius: 50%;
+  transition: transform var(--transition-fast);
+}
+
+.easter-egg-slice:hover {
+  transform: scale(1.3) rotate(20deg);
+}
+
+.easter-egg-hint {
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  color: #aaa;
+}
+
+/* Party Mode Activated Classes */
+body.party-mode {
+  animation: party-strobe 1.5s infinite;
+}
+
+body.party-mode .pizza-record {
+  animation-duration: 0.6s !important;
+}
+
+body.party-mode .deck-card {
+  border-color: #00FFCC !important;
+  box-shadow: 10px 10px 0 #FF007F !important;
+}
+
+.party-mode-banner {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #FF0055;
+  color: #FFF;
+  text-align: center;
+  padding: 0.8rem;
+  font-family: var(--font-subdisplay);
+  font-size: 1.1rem;
+  z-index: 9999;
+  border-bottom: 4px solid #000;
+}
+
+body.party-mode .party-mode-banner {
+  display: block;
+}
+
+/* --------------------------------------------------------------------------
+   13. Animations
+   -------------------------------------------------------------------------- */
+@keyframes pizza-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slice-bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 5px 5px 0 #000; }
+  50% { box-shadow: 8px 8px 0 var(--color-cheese); }
+}
+
+@keyframes modal-pop {
+  from { opacity: 0; transform: scale(0.85); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes party-strobe {
+  0% { filter: hue-rotate(0deg); }
+  50% { filter: hue-rotate(180deg) saturate(1.8); }
+  100% { filter: hue-rotate(360deg); }
+}
+
+/* --------------------------------------------------------------------------
+   14. Mobile Responsiveness
+   -------------------------------------------------------------------------- */
+@media (max-width: 900px) {
+  .top-utility-container {
+    padding: 0.35rem 1rem;
+    gap: 0.5rem;
+  }
+
+  .top-bar-tag {
+    display: none;
+  }
+
+  .top-social-label {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: flex;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background: #111A24;
+    border-bottom: 4px solid var(--color-punk-red);
+    padding: 1.5rem 0;
+  }
+
+  .main-nav.open {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+  }
+
+  .split-columns-layout, .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-cta-group {
+    flex-direction: column;
+  }
+
+  .btn-hero {
+    width: 100%;
+  }
+
+  .pizza-menu-board {
+    padding: 1.5rem;
+  }
+
+  .timeline-dish {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    width: 95%;
+    padding: 0 0.5rem;
+  }
+
+  .section-badge-wrapper {
+    margin-bottom: 2rem;
+  }
+
+  /* Booking form and boxes */
+  .booking-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .booking-form-box, .rider-box {
+    padding: 1.25rem;
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .form-group-row {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+  }
+
+  .booking-form input, .booking-form textarea {
+    font-size: 16px; /* Prevents iOS auto-zoom on input focus */
+    padding: 0.75rem;
+  }
+
+  .rider-checklist li {
+    padding: 0.75rem;
+    gap: 0.75rem;
+  }
+
+  /* Master mixer console */
+  .master-console {
+    padding: 1.25rem;
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .master-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .master-buttons .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .fader-group {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .master-sliders {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .tempo-group {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  /* Pizza Decks */
+  .pizza-decks-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .deck-card {
+    padding: 1.2rem;
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  /* Video Stage */
+  .video-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  /* Jukebox Section */
+  .jukebox-cabinet {
+    padding: 1rem;
+    border-radius: 16px;
+    box-shadow: 4px 4px 0 #000;
+  }
+
+  .jukebox-controls-replica {
+    padding: 0.8rem;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.8rem;
+  }
+
+  .selection-grid {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* Tour and Merch Split */
+  .split-columns-layout {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+  }
+
+  .gig-card {
+    padding: 0.9rem;
+    flex-wrap: wrap;
+  }
+
+  .merch-items-grid {
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+
+  /* Polaroid Gallery */
+  .polaroid-wall {
+    gap: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .polaroid-card {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  /* Modal Dialog */
+  .modal-box {
+    padding: 1.5rem;
+    box-shadow: 5px 5px 0 var(--color-punk-red);
+    max-width: 95vw;
+  }
+
+  /* Footer */
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+    gap: 1.5rem;
+  }
+
+  .easter-egg-wrapper {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .top-utility-container {
+    padding: 0.3rem 0.5rem;
+  }
+
+  .social-icons {
+    gap: 0.35rem;
+  }
+
+  .social-btn {
+    width: 32px;
+    height: 32px;
+  }
+
+  .brand-logo {
+    font-size: 1.6rem;
+  }
+
+  .hero-stickers {
+    gap: 0.5rem;
+  }
+
+  .sticker {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .pizza-menu-board {
+    padding: 1rem;
+    border-width: 4px;
+  }
+
+  .dish-year {
+    width: 100%;
+  }
+
+  .timeline-dish {
+    padding: 1rem 0.8rem;
+  }
+}
+

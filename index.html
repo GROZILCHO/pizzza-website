@@ -1,0 +1,933 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PIZZZA – 25 Години Ska-Core Chaos &amp; Pizza (1999–2026)</title>
+  <meta name="description" content="Официален юбилеен уебсайт за 25 години на българската ска-кор банда Pizzza. Интерактивен 4-канален DJ Pizza-Mixer с Web Audio API, дискография, турне, мърч и архив." />
+  <meta property="og:title" content="PIZZZA – 25 Години Ska-Core Chaos &amp; Pizza (1999–2026)" />
+  <meta property="og:description" content="Официален юбилеен уебсайт за 25 години на българската ска-кор банда Pizzza. Интерактивен 4-канален DJ Pizza-Mixer с Web Audio API, дискография, турне, мърч и архив." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍕</text></svg>">
+  
+  <!-- Google Fonts: Permanent Marker, Bungee, Oswald, Work Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bungee&family=Oswald:wght@400;600;700&family=Permanent+Marker&family=Work+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+
+  <!-- ========================================================
+       TOP UTILITY BAR (Bilingual Switcher & Social Links)
+       ======================================================== -->
+  <aside class="top-utility-bar" aria-label="Горна лента за настройки и връзки">
+    <div class="top-utility-container">
+      <div class="top-bar-left">
+        <span class="top-bar-tag" data-i18n="top_bar_tag">🍕 ОФИЦИАЛЕН САЙТ • ВАРНА 1999–2026</span>
+        <div class="lang-switch-group" aria-label="Превключване на език">
+          <button class="lang-btn active" data-lang="bg" id="lang-btn-bg" title="Български">BG</button>
+          <span class="lang-divider">/</span>
+          <button class="lang-btn" data-lang="en" id="lang-btn-en" title="English">EN</button>
+        </div>
+      </div>
+
+      <div class="top-bar-right">
+        <span class="top-social-label" data-i18n="top_social_label">СЛУШАЙ &amp; СЛЕДВАЙ:</span>
+        <div class="social-icons">
+          <a href="https://open.spotify.com/artist/6CnAGUNWVZ29yVOvfhCVLh" target="_blank" rel="noopener noreferrer" class="social-btn spotify" title="Слушай PIZZZA в Spotify" aria-label="Spotify">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.52 17.3c-.22.36-.68.47-1.04.25-2.85-1.74-6.44-2.14-10.67-1.17-.41.09-.82-.16-.91-.57-.09-.41.16-.82.57-.91 4.63-1.06 8.6-.61 11.8 1.34.36.22.47.69.25 1.06zm1.47-3.27c-.28.45-.87.59-1.32.31-3.26-2-8.23-2.58-12.08-1.41-.5.15-1.03-.14-1.18-.64-.15-.5.14-1.03.64-1.18 4.41-1.34 9.91-.68 13.63 1.6.45.28.59.87.31 1.32zm.13-3.41C15.22 8.28 8.8 8.07 5.12 9.19c-.6.18-1.24-.16-1.42-.76-.18-.6.16-1.24.76-1.42 4.23-1.29 11.31-1.04 15.8 1.63.54.32.72 1.03.4 1.57-.32.54-1.03.71-1.54.41z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/watch?v=gOr6kZ7q4hI" target="_blank" rel="noopener noreferrer" class="social-btn youtube" title="Гледай PIZZZA в YouTube" aria-label="YouTube">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="social-btn facebook" title="Официален Facebook на PIZZZA" aria-label="Facebook">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.instagram.com/pizzzaband/" target="_blank" rel="noopener noreferrer" class="social-btn instagram" title="Официален Instagram на PIZZZA" aria-label="Instagram">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.13-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ========================================================
+       1. HEADER & NAVIGATION
+       ======================================================== -->
+  <header class="site-header" id="header">
+    <div class="checkerboard-bar"></div>
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" aria-label="Pizzza Home">
+        <img src="assets/images/logo.jpg" alt="PIZZZA – Ска-Кор Лого" class="brand-logo-img">
+        <span class="logo-text">PIZZZA</span>
+        <span class="logo-badge" data-i18n="logo_badge">25 ГОДИНИ</span>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="main-nav" id="main-nav">
+        <ul class="nav-links">
+          <li><a href="#mixer" class="nav-link" data-i18n="nav_mixer">Миксер</a></li>
+          <li><a href="#jukebox" class="nav-link" data-i18n="nav_jukebox">Дискография</a></li>
+          <li><a href="#videos" class="nav-link" data-i18n="nav_videos">Клипове</a></li>
+          <li><a href="#timeline" class="nav-link" data-i18n="nav_timeline">История</a></li>
+          <li><a href="#tour-merch" class="nav-link" data-i18n="nav_tour_merch">Турне &amp; Мърч</a></li>
+          <li><a href="#gallery" class="nav-link" data-i18n="nav_gallery">Галерия</a></li>
+          <li><a href="#booking" class="nav-link" data-i18n="nav_booking">Контакти</a></li>
+        </ul>
+      </nav>
+
+      <!-- Mobile Burger Toggle -->
+      <div class="header-actions">
+        <button class="menu-toggle" id="menu-toggle" aria-label="Отвори Меню">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- ========================================================
+         2. HERO SECTION
+         ======================================================== -->
+    <section class="hero-section" id="hero">
+      <div class="hero-backdrop">
+        <img src="src/assets/images/pizzza-hero_live_concert.jpg" alt="PIZZZA – 25 години на живо пред публиката, ска-кор концерт Варна" class="hero-bg-photo">
+      </div>
+      <div class="container hero-content">
+        <div class="hero-stickers">
+          <span class="sticker punk-sticker" data-i18n="hero_sticker_1">★ 1999–2026 ★</span>
+          <span class="sticker pizza-sticker" data-i18n="hero_sticker_2">100% ЧИСТ СКА-КОР</span>
+          <span class="sticker horn-sticker" data-i18n="hero_sticker_3">ГРЪМОГЛАСЕН БРАС</span>
+        </div>
+
+        <h1 class="hero-title">
+          <span class="line-1" data-i18n="hero_title_1">25 ГОДИНИ</span>
+          <span class="line-2" data-i18n="hero_title_2">SKA-CORE CHAOS</span>
+          <span class="line-3" data-i18n="hero_title_3">&amp; PIZZZA!</span>
+        </h1>
+
+        <p class="hero-subtext" data-i18n="hero_subtext">
+          Четвърт век безкомпромисен ъндърграунд, брас секция, пого пред сцената, 
+          препечени корички и високи децибели. Включи се в PIZZZA отбора!
+        </p>
+
+        <div class="hero-cta-group">
+          <a href="#mixer" class="btn btn-primary btn-hero pulse-glow" data-i18n="hero_cta_mixer">
+            <span class="btn-icon">🔥</span>
+            <span>ПОРЪЧАЙ МИКСА (Пусни пещта)</span>
+          </a>
+          <a href="#tour-merch" class="btn btn-secondary" data-i18n="hero_cta_dates">
+            <span>ПРЕДСТОЯЩИ ДАТИ</span>
+          </a>
+        </div>
+      </div>
+      <div class="hero-tape tape-bottom"></div>
+    </section>
+
+    <!-- ========================================================
+         3. INTERACTIVE DJ PIZZA-MIXER
+         ======================================================== -->
+    <section class="mixer-section" id="mixer">
+      <div class="container">
+        <div class="section-badge-wrapper">
+          <span class="tag-badge" data-i18n="mixer_tag">ИНТЕРАКТИВЕН УЕБ АУДИО МИКСЕР</span>
+          <h2 class="section-title" data-i18n="mixer_title">ПИЦА ПУЛТ: 4-КАНАЛЕН МИКСЕР НА ЖИВО</h2>
+          <p class="section-description" data-i18n="mixer_desc">
+            Сглоби перфектното парче ска-кор хаос! Управлявай отделните съставки: вокали, китари, бас и барабани с духови. 
+            Всяка пица се върти като грамофонна плоча, докато трака свири.
+          </p>
+        </div>
+
+        <!-- Master DJ Console -->
+        <div class="master-console">
+          <div class="console-label" data-i18n="console_label">ГЛАВЕН КОНТРОЛ / ПЕЩТА</div>
+          <div class="master-buttons">
+            <button class="btn btn-master-play" id="master-play-btn" data-i18n="master_play">
+              <span class="btn-icon">▶</span> ПУСНИ ВСИЧКО
+            </button>
+            <button class="btn btn-master-pause" id="master-pause-btn" data-i18n="master_pause">
+              <span class="btn-icon">⏸</span> ПАУЗА
+            </button>
+            <button class="btn btn-master-reset" id="master-reset-btn" data-i18n="master_reset">
+              <span class="btn-icon">↺</span> ИЗЧИСТИ ВСИЧКО
+            </button>
+          </div>
+
+          <div class="master-sliders">
+            <div class="fader-group">
+              <label for="master-volume" data-i18n="master_volume_label">ОБЩА СИЛА:</label>
+              <input type="range" id="master-volume" min="0" max="100" value="85" class="fader">
+              <span class="fader-value" id="master-volume-val">85%</span>
+            </div>
+            <div class="tempo-group">
+              <span class="tempo-tag"><span data-i18n="tempo_label">ТЕМПО:</span> <strong>165 BPM</strong></span>
+              <span class="sync-indicator active" id="sync-status" data-i18n="audio_ready">● АУДИО СИСТЕМА: ГОТОВА</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4 Pizza Turntables Grid -->
+        <div class="pizza-decks-grid">
+          
+          <!-- Track 1: Vocals -->
+          <article class="deck-card" id="deck-vocals" data-track="vocals">
+            <div class="deck-header">
+              <span class="track-num" data-i18n="deck_1_num">ПИСТА #01</span>
+              <h3 class="track-name" data-i18n="deck_1_name">ВОКАЛИ</h3>
+              <span class="topping-badge" data-i18n="deck_1_badge">🌶️ Люто Пеперони</span>
+            </div>
+            
+            <div class="turntable-wrapper">
+              <div class="pizza-record pizza-vocals" id="pizza-disc-vocals">
+                <div class="vinyl-groove groove-1"></div>
+                <div class="vinyl-groove groove-2"></div>
+                <div class="vinyl-groove groove-3"></div>
+                <div class="pepperoni pep-1"></div>
+                <div class="pepperoni pep-2"></div>
+                <div class="pepperoni pep-3"></div>
+                <div class="pepperoni pep-4"></div>
+                <div class="pepperoni pep-5"></div>
+                <div class="center-label">
+                  <span class="label-title">PIZZZA</span>
+                  <span class="label-sub" data-i18n="deck_1_label">ВОКАЛИ</span>
+                  <div class="spindle-hole"></div>
+                </div>
+              </div>
+              <div class="tonearm" id="tonearm-vocals"></div>
+            </div>
+
+            <div class="deck-controls">
+              <div class="deck-action-buttons">
+                <button class="btn-deck-play track-btn" data-action="toggle-play" title="Старт / Пауза на трака">
+                  <span class="state-icon">▶</span> <span class="state-text" data-i18n="btn_play">Пусни</span>
+                </button>
+                <button class="btn-deck-mute track-btn" data-action="toggle-mute" title="Заглуши трака">
+                  <span class="mute-icon">🔊</span> <span class="mute-text" data-i18n="btn_mute">Заглуши</span>
+                </button>
+              </div>
+              <div class="fader-container">
+                <div class="fader-row">
+                  <label data-i18n="fader_vol">СИЛА:</label>
+                  <input type="range" class="track-volume fader" min="0" max="100" value="80">
+                  <span class="vol-indicator">80%</span>
+                </div>
+                <div class="vu-meter">
+                  <div class="vu-bar"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Track 2: Guitars -->
+          <article class="deck-card" id="deck-guitars" data-track="guitars">
+            <div class="deck-header">
+              <span class="track-num" data-i18n="deck_2_num">ПИСТА #02</span>
+              <h3 class="track-name" data-i18n="deck_2_name">КИТАРИ</h3>
+              <span class="topping-badge" data-i18n="deck_2_badge">🧀 Ска Акорди</span>
+            </div>
+            
+            <div class="turntable-wrapper">
+              <div class="pizza-record pizza-guitars" id="pizza-disc-guitars">
+                <div class="vinyl-groove groove-1"></div>
+                <div class="vinyl-groove groove-2"></div>
+                <div class="vinyl-groove groove-3"></div>
+                <div class="jalapeno jal-1"></div>
+                <div class="jalapeno jal-2"></div>
+                <div class="jalapeno jal-3"></div>
+                <div class="jalapeno jal-4"></div>
+                <div class="center-label">
+                  <span class="label-title">PIZZZA</span>
+                  <span class="label-sub" data-i18n="deck_2_label">КИТАРИ</span>
+                  <div class="spindle-hole"></div>
+                </div>
+              </div>
+              <div class="tonearm" id="tonearm-guitars"></div>
+            </div>
+
+            <div class="deck-controls">
+              <div class="deck-action-buttons">
+                <button class="btn-deck-play track-btn" data-action="toggle-play">
+                  <span class="state-icon">▶</span> <span class="state-text" data-i18n="btn_play">Пусни</span>
+                </button>
+                <button class="btn-deck-mute track-btn" data-action="toggle-mute">
+                  <span class="mute-icon">🔊</span> <span class="mute-text" data-i18n="btn_mute">Заглуши</span>
+                </button>
+              </div>
+              <div class="fader-container">
+                <div class="fader-row">
+                  <label data-i18n="fader_vol">СИЛА:</label>
+                  <input type="range" class="track-volume fader" min="0" max="100" value="85">
+                  <span class="vol-indicator">85%</span>
+                </div>
+                <div class="vu-meter">
+                  <div class="vu-bar"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Track 3: Bass -->
+          <article class="deck-card" id="deck-bass" data-track="bass">
+            <div class="deck-header">
+              <span class="track-num" data-i18n="deck_3_num">ПИСТА #03</span>
+              <h3 class="track-name" data-i18n="deck_3_name">БАС</h3>
+              <span class="topping-badge" data-i18n="deck_3_badge">🍄 Пънк Бас Линия</span>
+            </div>
+            
+            <div class="turntable-wrapper">
+              <div class="pizza-record pizza-bass" id="pizza-disc-bass">
+                <div class="vinyl-groove groove-1"></div>
+                <div class="vinyl-groove groove-2"></div>
+                <div class="vinyl-groove groove-3"></div>
+                <div class="mushroom mush-1"></div>
+                <div class="mushroom mush-2"></div>
+                <div class="mushroom mush-3"></div>
+                <div class="mushroom mush-4"></div>
+                <div class="center-label">
+                  <span class="label-title">PIZZZA</span>
+                  <span class="label-sub" data-i18n="deck_3_label">БАС</span>
+                  <div class="spindle-hole"></div>
+                </div>
+              </div>
+              <div class="tonearm" id="tonearm-bass"></div>
+            </div>
+
+            <div class="deck-controls">
+              <div class="deck-action-buttons">
+                <button class="btn-deck-play track-btn" data-action="toggle-play">
+                  <span class="state-icon">▶</span> <span class="state-text" data-i18n="btn_play">Пусни</span>
+                </button>
+                <button class="btn-deck-mute track-btn" data-action="toggle-mute">
+                  <span class="mute-icon">🔊</span> <span class="mute-text" data-i18n="btn_mute">Заглуши</span>
+                </button>
+              </div>
+              <div class="fader-container">
+                <div class="fader-row">
+                  <label data-i18n="fader_vol">СИЛА:</label>
+                  <input type="range" class="track-volume fader" min="0" max="100" value="90">
+                  <span class="vol-indicator">90%</span>
+                </div>
+                <div class="vu-meter">
+                  <div class="vu-bar"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Track 4: Horns & Drums -->
+          <article class="deck-card" id="deck-drums" data-track="drums">
+            <div class="deck-header">
+              <span class="track-num" data-i18n="deck_4_num">ПИСТА #04</span>
+              <h3 class="track-name" data-i18n="deck_4_name">ДУХАЧИ</h3>
+              <span class="topping-badge" data-i18n="deck_4_badge">🎺 Медни Духови &amp; Барабани</span>
+            </div>
+            
+            <div class="turntable-wrapper">
+              <div class="pizza-record pizza-drums" id="pizza-disc-drums">
+                <div class="vinyl-groove groove-1"></div>
+                <div class="vinyl-groove groove-2"></div>
+                <div class="vinyl-groove groove-3"></div>
+                <div class="olive oli-1"></div>
+                <div class="olive oli-2"></div>
+                <div class="olive oli-3"></div>
+                <div class="olive oli-4"></div>
+                <div class="olive oli-5"></div>
+                <div class="center-label">
+                  <span class="label-title">PIZZZA</span>
+                  <span class="label-sub" data-i18n="deck_4_label">ДУХАЧИ</span>
+                  <div class="spindle-hole"></div>
+                </div>
+              </div>
+              <div class="tonearm" id="tonearm-drums"></div>
+            </div>
+
+            <div class="deck-controls">
+              <div class="deck-action-buttons">
+                <button class="btn-deck-play track-btn" data-action="toggle-play">
+                  <span class="state-icon">▶</span> <span class="state-text" data-i18n="btn_play">Пусни</span>
+                </button>
+                <button class="btn-deck-mute track-btn" data-action="toggle-mute">
+                  <span class="mute-icon">🔊</span> <span class="mute-text" data-i18n="btn_mute">Заглуши</span>
+                </button>
+              </div>
+              <div class="fader-container">
+                <div class="fader-row">
+                  <label data-i18n="fader_vol">СИЛА:</label>
+                  <input type="range" class="track-volume fader" min="0" max="100" value="95">
+                  <span class="vol-indicator">95%</span>
+                </div>
+                <div class="vu-meter">
+                  <div class="vu-bar"></div>
+                </div>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         4. SPOTIFY JUKEBOX
+         ======================================================== -->
+    <section class="jukebox-section" id="jukebox">
+      <div class="container">
+        <div class="jukebox-cabinet">
+          <div class="jukebox-arch">
+            <div class="neon-tube red"></div>
+            <div class="neon-tube yellow"></div>
+            <h2 class="jukebox-title" data-i18n="jb_title">PIZZZA РЕТРО ДЖУБОКС</h2>
+          </div>
+
+          <div class="jukebox-interior">
+            <div class="jukebox-screen">
+              <p class="jukebox-prompt" data-i18n="jb_prompt">⚡ ОФИЦИАЛЕН SPOTIFY ПРОФИЛ: АЛБУМИ, СИНГЛИ &amp; ХИТОВЕ</p>
+              
+              <!-- Spotify Responsive Embed -->
+              <div class="spotify-embed-container">
+                <iframe 
+                  id="spotify-iframe"
+                  style="border-radius:12px; width:100%; min-height:352px;" 
+                  src="https://open.spotify.com/embed/artist/6CnAGUNWVZ29yVOvfhCVLh?utm_source=generator&theme=0" 
+                  frameBorder="0" 
+                  allowfullscreen="" 
+                  allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" 
+                  loading="lazy"
+                  title="PIZZZA Official Spotify Artist Profile">
+                </iframe>
+              </div>
+            </div>
+
+            <div class="jukebox-controls-replica">
+              <a href="https://open.spotify.com/artist/6CnAGUNWVZ29yVOvfhCVLh" target="_blank" rel="noopener noreferrer" class="btn-spotify-direct pulse-glow" title="Отвори в Spotify" data-i18n="jb_btn_spotify">
+                <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="margin-right: 8px;"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.52 17.3c-.22.36-.68.47-1.04.25-2.85-1.74-6.44-2.14-10.67-1.17-.41.09-.82-.16-.91-.57-.09-.41.16-.82.57-.91 4.63-1.06 8.6-.61 11.8 1.34.36.22.47.69.25 1.06zm1.47-3.27c-.28.45-.87.59-1.32.31-3.26-2-8.23-2.58-12.08-1.41-.5.15-1.03-.14-1.18-.64-.15-.5.14-1.03.64-1.18 4.41-1.34 9.91-.68 13.63 1.6.45.28.59.87.31 1.32zm.13-3.41C15.22 8.28 8.8 8.07 5.12 9.19c-.6.18-1.24-.16-1.42-.76-.18-.6.16-1.24.76-1.42 4.23-1.29 11.31-1.04 15.8 1.63.54.32.72 1.03.4 1.57-.32.54-1.03.71-1.54.41z"/></svg>
+                <span>СЛУШАЙ В SPOTIFY</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         5. YOUTUBE VIDEO STAGE
+         ======================================================== -->
+    <section class="video-stage-section" id="videos">
+      <div class="container">
+        <div class="section-badge-wrapper">
+          <span class="tag-badge" data-i18n="videos_tag">ОФИЦИАЛНИ КЛИПОВЕ И СИНГЛИ</span>
+          <h2 class="section-title" data-i18n="videos_title">ВИДЕО СЦЕНА</h2>
+          <p class="section-description" data-i18n="videos_desc">
+            Официални видеоклипове, актуални сингли и култови колаборации от златния фонд на групата.
+          </p>
+        </div>
+
+        <div class="video-grid">
+          <!-- Video 1 -->
+          <article class="video-card">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/gOr6kZ7q4hI?enablejsapi=1" 
+                title="PIZZZA feat. Асен Василев – „Кой Разпореди Това Безобразие“" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-info">
+              <span class="vid-tag" data-i18n="vid_tag_1">ОФИЦИАЛНА КОЛАБОРАЦИЯ</span>
+              <h3 class="video-heading" data-i18n="vid_title_1">PIZZZA feat. Асен Василев – „Кой Разпореди Това Безобразие“</h3>
+              <p class="video-desc" data-i18n="vid_desc_1">Експлозивна ска-кор колаборация, социална сатира, остър хумор и взривяваща брас секция.</p>
+              <a href="https://www.youtube.com/watch?v=gOr6kZ7q4hI" target="_blank" rel="noopener noreferrer" class="video-ext-link" data-i18n="vid_link">
+                Гледай в YouTube ➜
+              </a>
+            </div>
+          </article>
+
+          <!-- Video 2 -->
+          <article class="video-card">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/fx4IgxVC0EY?enablejsapi=1" 
+                title="PIZZZA – „Наш'та Маса“ feat. NEGY (Official Music Video)" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-info">
+              <span class="vid-tag" data-i18n="vid_tag_2">ОФИЦИАЛЕН МУЗИКАЛЕН КЛИП</span>
+              <h3 class="video-heading" data-i18n="vid_title_2">PIZZZA – „Наш'та Маса“ feat. NEGY (Official Music Video)</h3>
+              <p class="video-desc" data-i18n="vid_desc_2">Официален видеоклип – химнът за приятелите, масата и добрите времена. Чист ска-кор ъндърграунд вайб!</p>
+              <a href="https://www.youtube.com/watch?v=fx4IgxVC0EY" target="_blank" rel="noopener noreferrer" class="video-ext-link" data-i18n="vid_link">
+                Гледай в YouTube ➜
+              </a>
+            </div>
+          </article>
+
+          <!-- Video 3 -->
+          <article class="video-card">
+            <div class="video-wrapper">
+              <iframe 
+                src="https://www.youtube-nocookie.com/embed/53BfT8B5cK4?enablejsapi=1" 
+                title="PIZZZA – „Един За Един“" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
+            </div>
+            <div class="video-info">
+              <span class="vid-tag" data-i18n="vid_tag_3">СКА-ПЪНК ХИМН</span>
+              <h3 class="video-heading" data-i18n="vid_title_3">PIZZZA – „Един За Един“</h3>
+              <p class="video-desc" data-i18n="vid_desc_3">Бързо темпо, безкомпромисно пого пред сцената и мощни медни духови. Чиста ска-кор класика за верните фенове.</p>
+              <a href="https://www.youtube.com/watch?v=53BfT8B5cK4" target="_blank" rel="noopener noreferrer" class="video-ext-link" data-i18n="vid_link">
+                Гледай в YouTube ➜
+              </a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         6. THE MENU OF TIME (TIMELINE)
+         ======================================================== -->
+    <section class="timeline-section" id="timeline">
+      <div class="container">
+        <div class="section-badge-wrapper">
+          <span class="tag-badge" data-i18n="timeline_badge">1999 – 2026</span>
+          <h2 class="section-title" data-i18n="timeline_title">МЕНЮ НА ВРЕМЕТО (ВАРНЕНСКАТА ХРОНОЛОГИЯ)</h2>
+          <p class="section-description" data-i18n="timeline_desc">
+            Отвори кутията на спомените. Кликни върху всяко ястие от менюто за подробна история, състав и редки архиви от Варна.
+          </p>
+        </div>
+
+        <div class="pizza-menu-board">
+          <div class="menu-board-header">
+            <div class="menu-decor-fork">🍴</div>
+            <h3 class="menu-board-title" data-i18n="menu_board_title">ПИЦАРИЯ PIZZZA: СПЕЦИАЛНО МЕНЮ</h3>
+            <span class="menu-board-sub" data-i18n="menu_board_sub">Автентична рецепта от улиците на Варна (1999–2026)</span>
+          </div>
+
+          <div class="timeline-items-list">
+            
+            <!-- Item 1: 1999 -->
+            <div class="timeline-dish" data-modal="modal-1999">
+              <div class="dish-year">1999</div>
+              <div class="dish-content">
+                <h4 class="dish-title" data-i18n="dish_1_title">1999: Началото във Варна</h4>
+                <p class="dish-ingredients" data-i18n="dish_1_desc">Групата е основана във Варна по идея на Кобо, с участието на басиста Яшо и барабаниста Рамбо. Впоследствие се оформят: Каската (вокали), Машинката (цук тромбон) и Ники (тромпет). Любопитен факт: Преди първия официален албум песните се разпространяват из страната на презаписвани аудио касетки.</p>
+              </div>
+              <div class="dish-action">
+                <span class="btn-dish-inspect" data-i18n="btn_dish_inspect">Опитай парчето ➜</span>
+              </div>
+            </div>
+
+            <!-- Item 2: 2006 -->
+            <div class="timeline-dish" data-modal="modal-2006">
+              <div class="dish-year">2006</div>
+              <div class="dish-content">
+                <h4 class="dish-title" data-i18n="dish_2_title">2006: Дебютен албум „allBoom“</h4>
+                <p class="dish-ingredients" data-i18n="dish_2_desc">Излиза първият официален албум на групата в този класически състав. Мощна брас атака, концертни химни и чисто пънк пого.</p>
+              </div>
+              <div class="dish-action">
+                <span class="btn-dish-inspect" data-i18n="btn_dish_inspect">Опитай парчето ➜</span>
+              </div>
+            </div>
+
+            <!-- Item 3: 2013 -->
+            <div class="timeline-dish" data-modal="modal-2013">
+              <div class="dish-year">2013</div>
+              <div class="dish-content">
+                <h4 class="dish-title" data-i18n="dish_3_title">2013: Озвучаване и промени в състава – „Pizzza“</h4>
+                <p class="dish-ingredients" data-i18n="dish_3_desc">Излиза едноименният албум. В една от песните гостува легендарният бард Миро Морски (фронтмен на варненската група „Джанго Зе“). В духовата секция на мястото на Машинката идва Ники малкия (саксофон), а на цук-тромбон застава Витко (Витомир), който свири и до днес.</p>
+              </div>
+              <div class="dish-action">
+                <span class="btn-dish-inspect" data-i18n="btn_dish_inspect">Опитай парчето ➜</span>
+              </div>
+            </div>
+
+            <!-- Item 4: 2020 -->
+            <div class="timeline-dish" data-modal="modal-2020">
+              <div class="dish-year">2020</div>
+              <div class="dish-content">
+                <h4 class="dish-title" data-i18n="dish_4_title">2020: „Краля на кофража“</h4>
+                <p class="dish-ingredients" data-i18n="dish_4_desc">Излиза емблематичният сингъл с невероятния преразказ на Каската за работната етика на зидаро-кофражиста.</p>
+              </div>
+              <div class="dish-action">
+                <span class="btn-dish-inspect" data-i18n="btn_dish_inspect">Опитай парчето ➜</span>
+              </div>
+            </div>
+
+            <!-- Item 5: 2025 -->
+            <div class="timeline-dish active-anniversary" data-modal="modal-2025">
+              <div class="dish-year">2025</div>
+              <div class="dish-content">
+                <h4 class="dish-title" data-i18n="dish_5_title">2025: „Гласовете на България“ и нова ера</h4>
+                <p class="dish-ingredients" data-i18n="dish_5_desc">Мащабен проект в колаборация с именити музиканти: Иван Гатев (Контрол), СърМата Хари, хип-хоп звездата Neggi (от група „Фарс“) и R&B певицата Полина от Варна. На вокалите застава Симона – младо момиче от Варна, което поема микрофона.</p>
+              </div>
+              <div class="dish-action">
+                <span class="btn-dish-inspect gold-pill" data-i18n="btn_dish_new_era">★ НОВА ЕРА ★</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modal for Timeline Dish Inspection -->
+    <div class="modal-overlay" id="timeline-modal" aria-hidden="true">
+      <div class="modal-box">
+        <button class="modal-close-btn" id="modal-close" aria-label="Затвори">&times;</button>
+        <div class="modal-body" id="modal-content-target">
+          <!-- Filled dynamically by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ========================================================
+         7. LIVE SHOWS & DIY MERCH (2-COLUMN)
+         ======================================================== -->
+    <section class="tour-merch-section" id="tour-merch">
+      <div class="container">
+        <div class="split-columns-layout">
+          
+          <!-- Column 1: Tour Dates -->
+          <div class="col-tour">
+            <div class="column-badge" data-i18n="tour_badge">КАЛЕНДАР ЗА ПОГО НА ЖИВО</div>
+            <h3 class="col-heading" data-i18n="tour_title">ТУРНЕ „25 ГОДИНИ НА ЖАРТА“</h3>
+            <p class="col-sub" data-i18n="tour_sub">Ела да се потиш пред сцената. Билети на входа и онлайн.</p>
+
+            <ul class="gigs-list">
+              <li class="gig-card">
+                <div class="gig-date-box">
+                  <span class="gig-day">24</span>
+                  <span class="gig-month">АПР</span>
+                </div>
+                <div class="gig-details">
+                  <h4 class="gig-city">СОФИЯ</h4>
+                  <p class="gig-venue">Клуб Строежа (Open Air)</p>
+                </div>
+                <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="btn btn-gig" data-i18n="btn_fb_event">
+                  ФБ СЪБИТИЕ
+                </a>
+              </li>
+
+              <li class="gig-card">
+                <div class="gig-date-box">
+                  <span class="gig-day">08</span>
+                  <span class="gig-month">МАЙ</span>
+                </div>
+                <div class="gig-details">
+                  <h4 class="gig-city">ПЛОВДИВ</h4>
+                  <p class="gig-venue">Stage 51</p>
+                </div>
+                <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="btn btn-gig" data-i18n="btn_fb_event">
+                  ФБ СЪБИТИЕ
+                </a>
+              </li>
+
+              <li class="gig-card">
+                <div class="gig-date-box">
+                  <span class="gig-day">22</span>
+                  <span class="gig-month">МАЙ</span>
+                </div>
+                <div class="gig-details">
+                  <h4 class="gig-city">ВАРНА</h4>
+                  <p class="gig-venue">Varna Live Club</p>
+                </div>
+                <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="btn btn-gig" data-i18n="btn_fb_event">
+                  ФБ СЪБИТИЕ
+                </a>
+              </li>
+
+              <li class="gig-card">
+                <div class="gig-date-box">
+                  <span class="gig-day">12</span>
+                  <span class="gig-month">ЮНИ</span>
+                </div>
+                <div class="gig-details">
+                  <h4 class="gig-city">БУРГАС</h4>
+                  <p class="gig-venue">Бар Безкрай (Морска Градина)</p>
+                </div>
+                <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="btn btn-gig" data-i18n="btn_fb_event">
+                  ФБ СЪБИТИЕ
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Column 2: DIY Merch Menu -->
+          <div class="col-merch">
+            <div class="column-badge" data-i18n="merch_badge">ОФИЦИАЛЕН DIY МЪРЧ</div>
+            <h3 class="col-heading" data-i18n="merch_title">МЕНЮ С МЪРЧ ЗА ФЕНОВЕ</h3>
+            <p class="col-sub" data-i18n="merch_sub">100% памук, ръчен ситопечат и лимитирани бройки.</p>
+
+            <div class="merch-items-grid">
+              
+              <!-- Merch Item 1 -->
+              <div class="merch-card">
+                <div class="merch-img-slot">
+                  <img src="assets/images/merch-tshirt.jpg" alt="Юбилейна тениска PIZZZA 25 Години Ска &amp; Пица" class="merch-img">
+                  <span class="merch-stock" data-i18n="stock_limited">ОГРАНИЧЕНИ</span>
+                </div>
+                <div class="merch-info">
+                  <h4 class="merch-title" data-i18n="merch_item_1_title">Тениска „25 Години Ска &amp; Пица“</h4>
+                  <p class="merch-price">35.00 лв.</p>
+                  <button class="btn btn-merch-inquire" data-item="Тениска 25 Години" data-i18n="btn_order">Поръчай ➔</button>
+                </div>
+              </div>
+
+              <!-- Merch Item 2 -->
+              <div class="merch-card">
+                <div class="merch-img-slot">
+                  <img src="assets/images/album1.jpg" alt="Лимитиран 12-инчов червен винил allBoom PIZZZA" class="merch-img">
+                  <span class="merch-stock" data-i18n="stock_vinyl">ЛИМИТИРАН</span>
+                </div>
+                <div class="merch-info">
+                  <h4 class="merch-title" data-i18n="merch_item_2_title">12" Червен Винил „Златни Корички“</h4>
+                  <p class="merch-price">45.00 лв.</p>
+                  <button class="btn btn-merch-inquire" data-item="Червен Винил" data-i18n="btn_order">Поръчай ➔</button>
+                </div>
+              </div>
+
+              <!-- Merch Item 3 -->
+              <div class="merch-card">
+                <div class="merch-img-slot">
+                  <img src="assets/images/logo.jpg" alt="Сет официални нашивки и 10 стикери за кутии PIZZZA" class="merch-img">
+                  <span class="merch-stock" data-i18n="stock_available">В НАЛИЧНОСТ</span>
+                </div>
+                <div class="merch-info">
+                  <h4 class="merch-title" data-i18n="merch_item_3_title">Сет Нашивки + 10 Стикери за кутии</h4>
+                  <p class="merch-price">15.00 лв.</p>
+                  <button class="btn btn-merch-inquire" data-item="Сет Нашивки" data-i18n="btn_order">Поръчай ➔</button>
+                </div>
+              </div>
+
+              <!-- Merch Item 4 -->
+              <div class="merch-card">
+                <div class="merch-img-slot">
+                  <img src="assets/images/band.jpg" alt="Официална метална отварачка и аксесоар PIZZZA Ска-Кор" class="merch-img">
+                  <span class="merch-stock" data-i18n="stock_top">ТОП ИЗБОР</span>
+                </div>
+                <div class="merch-info">
+                  <h4 class="merch-title" data-i18n="merch_item_4_title">Метална отварачка „Pizzza Ска-Кор“</h4>
+                  <p class="merch-price">10.00 лв.</p>
+                  <button class="btn btn-merch-inquire" data-item="Отварачка Pizzza" data-i18n="btn_order">Поръчай ➔</button>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         8. WALL OF MADNESS (PHOTO GALLERY)
+         ======================================================== -->
+    <section class="gallery-section" id="gallery">
+      <div class="container">
+        <div class="section-badge-wrapper">
+          <span class="tag-badge" data-i18n="gallery_badge">СПОМЕНИ И ПОГО</span>
+          <h2 class="section-title" data-i18n="gallery_title">СТЕНА НА ЛУДОСТТА (ПОЛАРОИДЕН АРХИВ)</h2>
+          <p class="section-description" data-i18n="gallery_desc">
+            Пънк архив от последните две десетилетия и половина. Зад кулисите, репетиционната и сцената.
+          </p>
+        </div>
+
+        <div class="polaroid-wall">
+          
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-left" title="Виж снимката във Facebook: На Тъмно Live, Варна">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p1">
+              <img src="assets/images/photo1.jpg" alt="PIZZZA – О'Шипка Live, София (2008)" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_1">О`Шипка Live, София (2008)</div>
+          </a>
+
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-right" title="Виж снимката във Facebook: Брас атака &amp; тромпети">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p2">
+              <img src="assets/images/photo2.jpg" alt="PIZZZA – Брас атака &amp; тромпети (2012)" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_2">Брас атака &amp; тромпети (2012)</div>
+          </a>
+
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-straight" title="Виж снимката във Facebook: Бекстейдж хаос &amp; пици">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p3">
+              <img src="assets/images/photo3.jpg" alt="PIZZZA – Бекстейдж хаос &amp; пици (2016)" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_3">Бекстейдж хаос &amp; пици (2016)</div>
+          </a>
+
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-left-2" title="Виж снимката във Facebook: Студийни сесии на 40°C">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p4">
+              <img src="assets/images/photo4.jpg" alt="PIZZZA – Студийни сесии на 40°C (2021)" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_4">Студийни сесии на 40°C (2021)</div>
+          </a>
+
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-right-2" title="Виж снимката във Facebook: Фестивална енергия &amp; фенове">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p5">
+              <img src="assets/images/photo5.jpg" alt="PIZZZA – Фестивална енергия &amp; фенове (2024)" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_5">Фестивална енергия &amp; фенове (2024)</div>
+          </a>
+
+          <a href="https://www.facebook.com/pizzza.skacore.band" target="_blank" rel="noopener noreferrer" class="polaroid-card pol-tilt-left" title="Виж снимката във Facebook: Stage dive меле пред сцената">
+            <div class="tape-strip"></div>
+            <div class="polaroid-photo p6">
+              <img src="assets/images/photo6.jpg" alt="PIZZZA – Stage dive меле пред сцената" class="polaroid-img" loading="lazy">
+            </div>
+            <div class="polaroid-caption" data-i18n="cap_6">О`Шипка Live, София (2008)</div>
+          </a>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================
+         9. CONTACT, BOOKING & RIDER
+         ======================================================== -->
+    <section class="booking-section" id="booking">
+      <div class="container">
+        <div class="booking-grid">
+          
+          <!-- Booking Form -->
+          <div class="booking-form-box">
+            <div class="column-badge" data-i18n="booking_badge">ДИРЕКТЕН БУУКИНГ</div>
+            <h3 class="box-title" data-i18n="booking_title">ИЗВИКАЙ НИ В ТВОЯ ГРАД</h3>
+            <p class="box-text" data-i18n="booking_sub">Организираш клубен концерт, фестивал или DIY пънк гиг? Пиши ни директно:</p>
+            
+            <form id="booking-form" class="booking-form">
+              <div class="form-group">
+                <label for="b-name" data-i18n="form_label_name">Име / Организация / Клуб:</label>
+                <input type="text" id="b-name" required placeholder="Напр. DIY Fest Варна">
+              </div>
+              <div class="form-group">
+                <label for="b-email" data-i18n="form_label_email">Имейл за обратна връзка:</label>
+                <input type="email" id="b-email" required placeholder="pizzzafan@domain.com">
+              </div>
+              <div class="form-group-row">
+                <div class="form-group">
+                  <label for="b-city" data-i18n="form_label_city">Град:</label>
+                  <input type="text" id="b-city" required placeholder="Град">
+                </div>
+                <div class="form-group">
+                  <label for="b-date" data-i18n="form_label_date">Желана дата:</label>
+                  <input type="date" id="b-date">
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="b-msg" data-i18n="form_label_msg">Детайли за събитието:</label>
+                <textarea id="b-msg" rows="4" placeholder="Разкажи за сцената, саунда и капацитета..."></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary btn-submit" data-i18n="form_btn_submit">
+                <span>ИЗПРАТИ ЗАПИТВАНЕ</span> ✉️
+              </button>
+              <div class="form-feedback" id="form-feedback"></div>
+            </form>
+          </div>
+
+          <!-- Technical Rider Card -->
+          <div class="rider-box">
+            <div class="column-badge" data-i18n="rider_badge">ТЕХНИЧЕСКИ РАЙДЪР</div>
+            <h3 class="box-title" data-i18n="rider_title">ЗАДЪЛЖИТЕЛЕН ТЕХНИЧЕСКИ РАЙДЪР</h3>
+            <p class="rider-sub" data-i18n="rider_sub">Без тези неща ска-кор машината не пали:</p>
+
+            <ul class="rider-checklist">
+              <li>
+                <span class="rider-icon">🍕</span>
+                <div>
+                  <strong data-i18n="rider_item_1_title">2 Семейни пици в бекстейджа:</strong>
+                  <span data-i18n="rider_item_1_desc">1 бр. Люто Пеперони и 1 бр. Четири сирена (без компромис).</span>
+                </div>
+              </li>
+              <li>
+                <span class="rider-icon">🍺</span>
+                <div>
+                  <strong data-i18n="rider_item_2_title">Минимум 12 студени бири:</strong>
+                  <span data-i18n="rider_item_2_desc">И 2 бутилки минерална вода за брас секцията.</span>
+                </div>
+              </li>
+              <li>
+                <span class="rider-icon">🎙️</span>
+                <div>
+                  <strong data-i18n="rider_item_3_title">3 бр. Shure SM58 за вокалите:</strong>
+                  <span data-i18n="rider_item_3_desc">И устойчиви микрофонни стойки, способни да издържат на сценично пого.</span>
+                </div>
+              </li>
+              <li>
+                <span class="rider-icon">🎺</span>
+                <div>
+                  <strong data-i18n="rider_item_4_title">Озвучаване за духовите:</strong>
+                  <span data-i18n="rider_item_4_desc">Силни сценични монитори, за да се чуват тромпетът и тромбонът над барабаните.</span>
+                </div>
+              </li>
+              <li>
+                <span class="rider-icon">🔥</span>
+                <div>
+                  <strong data-i18n="rider_item_5_title">Атмосфера:</strong>
+                  <span data-i18n="rider_item_5_desc">Приятелско отношение, фенове готови за ска танц и суров ъндърграунд звук.</span>
+                </div>
+              </li>
+            </ul>
+
+            <div class="direct-contacts">
+              <p><strong data-i18n="contacts_label">Директен контакт с мениджмънта:</strong></p>
+              <p>📧 booking@pizzza-band.com | 📞 +359 888 123 456</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========================================================
+       10. FOOTER & EASTER EGG
+       ======================================================== -->
+  <footer class="site-footer">
+    <div class="checkerboard-bar"></div>
+    <div class="container footer-content">
+      <div class="footer-left">
+        <div class="footer-logo">PIZZZA</div>
+        <p class="footer-copy" data-i18n="footer_copy">
+          &copy; 1999–2026 PIZZZA Ska-Core (Варна). Всички права запазени за ъндърграунда.
+          Създадено с чист HTML, CSS и Web Audio API без консерванти.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <!-- Secret Easter Egg Trigger -->
+        <div class="easter-egg-wrapper">
+          <button class="easter-egg-slice" id="easter-egg-btn" title="Скрита съставка? Кликни тук!">
+            🍕
+          </button>
+          <span class="easter-egg-hint" data-i18n="easter_hint">Кликни парчето за тайна съставка!</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Party Mode Banner Overlay -->
+  <div class="party-mode-banner" id="party-banner">
+    <span class="flashing-text" data-i18n="party_banner">🚨 ПАРТИ РЕЖИМ: МЕЛЕ ПРЕД СЦЕНАТА! СКА-КОР ОВЪРДРАЙВ! 🚨</span>
+  </div>
+
+  <!-- JavaScript -->
+  <script type="module" src="/script.js"></script>
+</body>
+</html>
+

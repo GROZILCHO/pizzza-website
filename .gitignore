@@ -1,0 +1,21 @@
+# Local environment variables (keep example files trackable)
+.env
+.env.*
+!.env.example
+
+# Node dependencies
+node_modules/
+
+# Editor temporary files
+*.swp
+*.swo
+*~
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local reference screenshots (not used by the website)
+/homescreen_bg.png
+/homescreen_en.png
