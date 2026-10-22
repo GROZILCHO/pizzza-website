@@ -23,20 +23,35 @@ function initMobileNavigation() {
   const menuToggle = document.getElementById('menu-toggle');
   const mainNav = document.getElementById('main-nav');
   const navLinks = document.querySelectorAll('.nav-link');
-
-  if (!menuToggle || !mainNav) return;
-
+  if (!menuToggle || !mainNav || menuToggle.dataset.initialized) return;
+  menuToggle.dataset.initialized = 'true';
+  const compactNavigation = window.matchMedia('(max-width: 1100px)');
+  menuToggle.setAttribute('aria-controls', 'main-nav');
+  menuToggle.setAttribute('aria-label', 'Меню / Menu');
+  function setOpen(open) {
+    mainNav.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', String(open));
+  }
+  setOpen(false);
   menuToggle.addEventListener('click', () => {
-    mainNav.classList.toggle('open');
+    const open = !mainNav.classList.contains('open');
+    setOpen(open);
+    // The navigation precedes the toggle in DOM order; move keyboard focus into it.
+    if (open) navLinks[0]?.focus();
   });
-
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      mainNav.classList.remove('open');
-    });
+  navLinks.forEach(link => link.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', event => {
+    if (event.key !== 'Escape' || !mainNav.classList.contains('open')) return;
+    event.preventDefault(); setOpen(false); menuToggle.focus();
+  });
+  compactNavigation.addEventListener('change', () => {
+    const focusWasInNavigation = mainNav.contains(document.activeElement);
+    const focusWasOnToggle = document.activeElement === menuToggle;
+    setOpen(false);
+    if (compactNavigation.matches && focusWasInNavigation) menuToggle.focus();
+    else if (!compactNavigation.matches && focusWasOnToggle) navLinks[0]?.focus();
   });
 }
-
 /* ==========================================================================
    2. WEB AUDIO API & PIZZA-MIXER ENGINE
    ========================================================================== */

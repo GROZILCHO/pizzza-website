@@ -1173,7 +1173,7 @@ button {
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   gap: 2.2rem;
 }
 
@@ -2062,7 +2062,7 @@ body.party-mode .party-mode-banner {
 /* --------------------------------------------------------------------------
    14. Mobile Responsiveness
    -------------------------------------------------------------------------- */
-@media (max-width: 900px) {
+@media (max-width: 1100px) {
   .top-utility-container {
     padding: 0.35rem 1rem;
     gap: 0.5rem;
@@ -2101,6 +2101,9 @@ body.party-mode .party-mode-banner {
     gap: 1.2rem;
   }
 
+}
+
+@media (max-width: 900px) {
   .split-columns-layout, .booking-grid {
     grid-template-columns: 1fr;
   }
@@ -2194,12 +2197,6 @@ body.party-mode .party-mode-banner {
   .deck-card {
     padding: 1.2rem;
     box-shadow: 4px 4px 0 #000;
-  }
-
-  /* Video Stage */
-  .video-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
   }
 
   /* Jukebox Section */
@@ -2413,7 +2410,7 @@ body { background: var(--background-stage); }
 .video-stage-section .section-title { color: var(--text-on-stage); }
 .video-stage-section .section-description { color: var(--text-muted-stage); }
 .video-stage-section .tag-badge { background: var(--accent-warm); color: var(--text-on-paper); }
-.video-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; }
+.video-grid { gap: 1.5rem; }
 .video-card { background: var(--background-stage); border: 1px solid var(--border-strong); box-shadow: var(--shadow-editorial); }
 .video-info { padding: 1.5rem; }
 .video-heading { color: var(--text-on-stage); font: 700 1.35rem/1.35 var(--type-control); }
@@ -2692,5 +2689,52 @@ main > section:not(.hero-section) > .container > .section-badge-wrapper {
   }
   @media (min-width: 1200px) {
     .pizza-decks-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
+}
+
+/* Responsive QA 03A: one coordinated header transition; Hero keeps its own breakpoints. */
+.header-container { gap: 1rem; }
+.header-container .brand-logo { flex-shrink: 0; }
+.main-nav { min-width: 0; }
+.nav-links { flex-wrap: nowrap; gap: clamp(.75rem, 1.5vw, 1.5rem); }
+.nav-link { white-space: nowrap; font-size: clamp(1rem, 1.4vw, 1.1rem); }
+@media (max-width: 1100px) {
+  .menu-toggle { min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+  .main-nav {
+    max-height: calc(100vh - 9rem);
+    max-height: calc(100dvh - 9rem);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding-block: .75rem;
+    background: var(--background-stage);
+  }
+  .main-nav .nav-links { align-items: stretch; gap: .25rem; padding-inline: var(--content-gutter); }
+  .main-nav .nav-link { display: flex; align-items: center; min-height: 44px; padding: .5rem; font-size: 1.1rem; white-space: normal; overflow-wrap: anywhere; }
+}
+
+/* Three real videos: one column -> two + a horizontal feature -> three columns. */
+.video-stage-section > .container { container: video-layout / inline-size; }
+.video-card > .video-info { min-width: 0; }
+@container video-layout (min-width: 40rem) {
+  .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .video-card:nth-child(3) {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: center;
+  }
+}
+@container video-layout (min-width: 64rem) {
+  .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .video-card:nth-child(3) { grid-column: auto; display: flex; flex-direction: column; grid-template-columns: none; align-items: stretch; }
+}
+@supports not (container-type: inline-size) {
+  @media (min-width: 700px) {
+    .video-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .video-card:nth-child(3) { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+  }
+  @media (min-width: 1114px) {
+    .video-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .video-card:nth-child(3) { grid-column: auto; display: flex; flex-direction: column; grid-template-columns: none; align-items: stretch; }
   }
 }
