@@ -1,5 +1,5 @@
 /* ==========================================================================
-   PIZZZA – 25 YEARS SKA-CORE & PIZZA
+   PIZZZA – SKA-CORE & PIZZA • EST. 1999
    DIY Punk & 2-Tone Aesthetic Stylesheet
    ========================================================================== */
 
@@ -7,6 +7,49 @@
    1. CSS Custom Properties (Theme Colors & Typography)
    -------------------------------------------------------------------------- */
 :root {
+  /* Visual identity v2: semantic tokens. Legacy tokens remain for the protected Hero and decks. */
+  --brand-stage: #121417;
+  --brand-paper: #F1E6CC;
+  --brand-red: #D72E3A;
+  --brand-yellow: #EDC64B;
+  --brand-teal: #86AFA4;
+  --background-stage: var(--brand-stage);
+  --background-paper: var(--brand-paper);
+  --background-poster: var(--brand-yellow);
+  --surface-stage: #20252A;
+  --surface-paper: #FAF4E6;
+  --text-on-stage: var(--brand-paper);
+  --text-on-paper: var(--brand-stage);
+  --text-muted-stage: #C5C9C4;
+  --text-muted-paper: #4C504C;
+  --border-stage: #52595C;
+  --border-paper: #817B6E;
+  --border-strong: var(--brand-stage);
+  --button-primary: var(--brand-red);
+  --button-primary-text: #FFFFFF;
+  --button-secondary: var(--brand-yellow);
+  --button-secondary-text: var(--brand-stage);
+  --accent-warm: var(--brand-yellow);
+  --accent-cool: var(--brand-teal);
+  --state-hover-stage: #30383C;
+  --state-hover-paper: #FFFFFF;
+  --state-hover-primary: #B8202C;
+  --state-focus-stage: var(--brand-yellow);
+  --state-focus-paper: var(--brand-stage);
+  --state-disabled-surface: #42494C;
+  --state-disabled-text: var(--brand-paper);
+  --shadow-editorial: 5px 5px 0 var(--brand-stage);
+  --shadow-control: 2px 2px 0 var(--brand-stage);
+  --shadow-surface: 0 2px 0 rgb(18 20 23 / 18%);
+  --type-expression: 'Permanent Marker', 'Oswald', 'Arial', sans-serif;
+  --type-poster: 'Bungee', 'Oswald', 'Arial', sans-serif;
+  --type-control: 'Oswald', 'Arial', sans-serif;
+  --type-reading: 'Work Sans', 'Arial', sans-serif;
+  --section-space: clamp(3.5rem, 7vw, 6rem);
+  --content-max: 1200px;
+  --content-gutter: clamp(1rem, 4vw, 3rem);
+  --section-heading-gap: clamp(2rem, 3vw, 3rem);
+
   --color-punk-red: #E63946;
   --color-cheese: #F4A261;
   --color-cheese-light: #E9C46A;
@@ -683,8 +726,8 @@ button {
 /* 4 Pizza Decks Grid */
 .pizza-decks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1.5rem;
 }
 
 .deck-card {
@@ -1496,8 +1539,8 @@ button {
 /* Merch Grid */
 .merch-items-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
-  gap: 1.2rem;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 1rem;
 }
 
 .merch-card {
@@ -1914,10 +1957,20 @@ button {
   font-size: .75rem;
   color: var(--color-dirty-white);
 }
-.footer-credit span { color: var(--color-cheese-light); }
-.footer-credit a { color: inherit; text-decoration: underline; text-underline-offset: .2em; }
-.footer-credit a:hover { color: var(--color-cheese-light); }
-.footer-credit a:focus-visible { outline: 2px solid var(--color-cheese-light); outline-offset: 4px; }
+.footer-credit-link {
+  color: var(--color-cheese-light);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.footer-credit-link:hover {
+  text-decoration: underline;
+}
+
+.footer-credit-link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 3px;
+}
 .easter-egg-wrapper {
   display: flex;
   align-items: center;
@@ -2138,12 +2191,6 @@ body.party-mode .party-mode-banner {
     width: 100%;
   }
 
-  /* Pizza Decks */
-  .pizza-decks-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
   .deck-card {
     padding: 1.2rem;
     box-shadow: 4px 4px 0 #000;
@@ -2183,11 +2230,6 @@ body.party-mode .party-mode-banner {
   .gig-card {
     padding: 0.9rem;
     flex-wrap: wrap;
-  }
-
-  .merch-items-grid {
-    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    gap: 0.8rem;
   }
 
   /* Polaroid Gallery */
@@ -2317,4 +2359,338 @@ body.party-mode .party-mode-banner {
   .merch-cart-controls span { flex-basis: 100%; }
   #merch-submit { grid-column: 1; grid-row: auto; width: 100%; }
   .merch-summary-list dl { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* ==========================================================================
+   Identity v2 / Iteration 02: Stage -> Poster -> Paper section rhythm.
+   Scoped rules deliberately leave Hero, mixer decks, jukebox cabinet and modal intact.
+   ========================================================================== */
+body { background: var(--background-stage); }
+.top-utility-bar, .site-header { background: var(--background-stage); }
+.top-bar-tag, .logo-text { color: var(--accent-warm); }
+.logo-badge { background: var(--brand-red); color: var(--button-primary-text); box-shadow: none; }
+.nav-link { font-family: var(--type-control); color: var(--text-on-stage); }
+.nav-link:hover { color: var(--accent-warm); }
+.lang-switch-group, .social-btn { background: var(--surface-stage); border-color: var(--border-stage); box-shadow: none; }
+.lang-btn.active { background: var(--button-primary); color: var(--button-primary-text); box-shadow: none; }
+.lang-btn:hover { color: var(--text-on-stage); }
+
+/* Headlines keep the poster voice; supporting copy has room to breathe. */
+:is(.mixer-section, .jukebox-section, .video-stage-section, .timeline-section, .gallery-section) .section-title {
+  font-family: var(--type-poster);
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  line-height: 1.25;
+  text-shadow: none;
+}
+:is(.mixer-section, .jukebox-section, .video-stage-section, .timeline-section, .gallery-section) .section-description {
+  font-family: var(--type-reading);
+  font-size: clamp(1rem, 1.5vw, 1.1rem);
+  line-height: 1.75;
+}
+/* Oswald carries Cyrillic headings when the decorative fonts lack those glyphs. */
+:lang(bg) :is(.mixer-section, .jukebox-section, .video-stage-section, .timeline-section, .gallery-section) .section-title {
+  font-family: var(--type-control);
+  font-weight: 700;
+  letter-spacing: .025em;
+}
+:is(.mixer-section, .jukebox-section, .video-stage-section, .timeline-section, .gallery-section) .tag-badge {
+  background: var(--brand-red); color: var(--button-primary-text);
+  transform: none; box-shadow: none; letter-spacing: .08em;
+}
+:is(.mixer-section, .video-stage-section, .timeline-section, .tour-merch-section, .gallery-section, .booking-section) {
+  padding-block: var(--section-space);
+  border-bottom: 1px solid var(--border-stage);
+}
+.mixer-section, .tour-merch-section, .gallery-section { background: var(--background-stage); color: var(--text-on-stage); }
+:is(.mixer-section, .jukebox-section, .gallery-section) .section-title { color: var(--accent-warm); }
+:is(.mixer-section, .jukebox-section, .gallery-section) .section-description { color: var(--text-muted-stage); }
+/* Audio decks and Spotify retain their original component styling and photographs. */
+.master-console { border-width: 2px; box-shadow: var(--shadow-control); }
+.jukebox-section { border-bottom: 1px solid var(--border-stage); }
+
+/* STAGE / POSTER: neutral video surround with a concentrated yellow poster label. */
+.video-stage-section { background: var(--surface-stage); color: var(--text-on-stage); border-top: 3px solid var(--accent-warm); }
+.video-stage-section .section-title { color: var(--text-on-stage); }
+.video-stage-section .section-description { color: var(--text-muted-stage); }
+.video-stage-section .tag-badge { background: var(--accent-warm); color: var(--text-on-paper); }
+.video-grid { grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; }
+.video-card { background: var(--background-stage); border: 1px solid var(--border-strong); box-shadow: var(--shadow-editorial); }
+.video-info { padding: 1.5rem; }
+.video-heading { color: var(--text-on-stage); font: 700 1.35rem/1.35 var(--type-control); }
+.video-desc { color: var(--text-muted-stage); font-family: var(--type-reading); line-height: 1.7; }
+.vid-tag { background: var(--brand-red); color: var(--button-primary-text); }
+.video-ext-link { background: transparent; border: 1px solid var(--border-stage); color: var(--accent-warm); box-shadow: none; min-height: 44px; }
+.video-ext-link:hover { background: var(--state-hover-stage); border-color: var(--accent-warm); color: var(--accent-warm); transform: none; box-shadow: none; }
+
+/* PAPER: the historical menu, dates and source content remain unchanged. */
+.timeline-section { background: var(--background-paper); color: var(--text-on-paper); }
+.timeline-section .section-title { color: var(--text-on-paper); }
+.timeline-section .section-description { color: var(--text-muted-paper); }
+.pizza-menu-board { background: var(--surface-paper); border: 3px solid var(--border-strong); box-shadow: var(--shadow-editorial); }
+.pizza-menu-board::before { border: 1px dashed var(--border-paper); }
+.menu-board-title { font-family: var(--type-expression); color: var(--brand-red); }
+.menu-board-sub { color: var(--text-muted-paper); }
+.timeline-dish { background: var(--background-paper); border: 1px solid var(--border-paper); box-shadow: none; }
+.timeline-dish:hover { background: var(--state-hover-paper); border-color: var(--border-strong); transform: translateX(2px); box-shadow: var(--shadow-control); }
+.dish-content { min-width: 0; }
+.dish-title { color: var(--text-on-paper); }
+.dish-ingredients { color: var(--text-muted-paper); line-height: 1.7; }
+.dish-year { background: var(--background-stage); color: var(--accent-warm); font-family: var(--type-control); font-weight: 700; }
+.btn-dish-inspect { color: var(--text-on-paper); text-decoration: underline; text-underline-offset: .2em; }
+.gold-pill { background: var(--accent-warm); border-width: 1px; box-shadow: none; }
+
+/* STAGE: dates, demo products and the full-width cart share a quieter card system. */
+.col-heading { font-family: var(--type-control); color: var(--accent-warm); line-height: 1.3; }
+.column-badge { color: var(--accent-cool); border: 0; background: transparent; padding-left: 0; box-shadow: none; }
+.col-sub, .gig-venue { color: var(--text-muted-stage); line-height: 1.7; }
+.gig-card, .merch-card { background: var(--surface-stage); border: 1px solid var(--border-stage); box-shadow: none; }
+.gig-city, .merch-price { color: var(--accent-warm); font-family: var(--type-control); }
+.gig-date-box { background: var(--brand-red); border: 0; color: var(--button-primary-text); }
+.gig-day { font-family: var(--type-control); font-weight: 700; }
+.merch-title { color: var(--text-on-stage); line-height: 1.4; }
+.merch-img-slot { background: var(--background-stage); border-bottom: 1px solid var(--border-stage); }
+.merch-stock { background: var(--background-stage); color: var(--accent-warm); }
+.btn-merch-inquire, .booking-section .btn-submit { background: var(--button-primary); color: var(--button-primary-text); border: 1px solid var(--border-strong); box-shadow: var(--shadow-control); min-height: 44px; }
+.btn-merch-inquire:hover, .booking-section .btn-submit:hover { background: var(--state-hover-primary); transform: none; box-shadow: var(--shadow-control); }
+.btn-gig, .merch-cart-controls button { background: var(--button-secondary); color: var(--button-secondary-text); border: 1px solid var(--border-strong); box-shadow: none; min-height: 44px; }
+.btn-gig:hover, .merch-cart-controls button:hover { background: var(--surface-paper); transform: none; box-shadow: none; }
+.merch-cart { background: var(--background-paper); color: var(--text-on-paper); border: 2px solid var(--border-strong); box-shadow: var(--shadow-editorial); }
+.merch-cart-header, .merch-cart-footer { background: var(--background-stage); color: var(--text-on-stage); border-color: var(--border-stage); border-width: 1px; }
+.merch-cart-header h4, #merch-cart-count, .merch-cart-footer .merch-cart-total { color: var(--accent-warm); font-family: var(--type-control); }
+.merch-cart-line { border-color: var(--border-paper); }
+.merch-feedback, .merch-order-details summary, .merch-summary-list dt { color: var(--text-on-paper); }
+.merch-summary-list li { border-color: var(--border-paper); }
+.merch-size { background: var(--surface-paper); color: var(--text-on-paper); border: 1px solid var(--border-paper); }
+#merch-submit { background: var(--state-disabled-surface); color: var(--state-disabled-text); border: 1px solid var(--border-stage); box-shadow: none; }
+#merch-submit:hover { transform: none; box-shadow: none; }
+
+/* Gallery retains the real photographs, paper frames and individual Polaroid tilts. */
+.polaroid-card { box-shadow: var(--shadow-editorial); }
+
+/* PAPER: booking and the rider are legible editorial panels, not competing posters. */
+.booking-section { background: var(--background-paper); color: var(--text-on-paper); }
+.booking-form-box, .rider-box { background: var(--surface-paper); border: 1px solid var(--border-paper); box-shadow: var(--shadow-surface); padding: clamp(1.1rem, 3vw, 2.25rem); min-width: 0; }
+.booking-section .box-title { font: 700 clamp(1.6rem, 2.5vw, 2rem)/1.3 var(--type-control); color: var(--text-on-paper); }
+.booking-section :is(.box-text, .rider-sub, .rider-checklist span) { color: var(--text-muted-paper); font-family: var(--type-reading); line-height: 1.75; }
+.booking-form { gap: 1.4rem; }
+.booking-form label { color: var(--text-on-paper); font-family: var(--type-control); }
+.booking-form input, .booking-form textarea { background: var(--background-paper); color: var(--text-on-paper); border: 1px solid var(--border-paper); font-family: var(--type-reading); }
+.booking-form input::placeholder, .booking-form textarea::placeholder { color: var(--text-muted-paper); opacity: 1; }
+.booking-form input:focus, .booking-form textarea:focus { background: var(--state-hover-paper); border-color: var(--border-strong); outline: 2px solid var(--state-focus-paper); outline-offset: 2px; }
+.rider-checklist li { background: transparent; border: 0; border-bottom: 1px solid var(--border-paper); padding: .9rem 0; }
+.rider-checklist strong { color: var(--text-on-paper); font-family: var(--type-control); }
+.direct-contacts { border-color: var(--border-paper); overflow-wrap: anywhere; }
+.booking-section .form-feedback.success { color: var(--text-on-paper); }
+
+/* Approved footer: the plain credit has no portfolio link in this iteration. */
+.site-footer { background: var(--background-stage); color: var(--text-on-stage); }
+.footer-logo { color: var(--brand-red); font-family: var(--type-expression); }
+.footer-description, .footer-copy, .footer-tagline, .footer-credit { color: var(--text-on-stage); }
+.footer-description, .footer-location { font-family: var(--type-control); }
+.footer-location { color: var(--text-on-stage); }
+.footer-credit span { color: var(--accent-warm); }
+.footer-divider { border-color: var(--border-stage); }
+
+/* Explicit focus states on the appropriate surface, without altering Hero CTAs. */
+:is(.site-header, .top-utility-bar, .tour-merch-section, .gallery-section, .site-footer) :is(a, button, select):focus-visible {
+  outline: 3px solid var(--state-focus-stage); outline-offset: 4px;
+}
+:is(.video-stage-section, .timeline-section, .booking-section, .merch-cart-body) :is(a, button, summary, select):focus-visible {
+  outline: 3px solid var(--state-focus-paper); outline-offset: 4px;
+}
+
+/* Shrinking tracks and wrapping controls prevent overflow instead of hiding it. */
+.split-columns-layout > *, .booking-grid > *, .video-grid > *, .gig-details, .form-group-row > * { min-width: 0; }
+.video-heading, .merch-title, .col-heading, .section-title, .footer-description { overflow-wrap: anywhere; }
+.form-group-row { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+@media (min-width: 901px) {
+  .split-columns-layout { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(2rem, 4vw, 3.5rem); }
+}
+@media (max-width: 1024px) {
+  .gig-card { flex-wrap: wrap; }
+  .gig-card .btn-gig { margin-left: auto; }
+  .merch-cart-line { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+  .merch-cart-line h5 { grid-column: 1 / -1; }
+}
+@media (max-width: 768px) {
+  .booking-grid, .split-columns-layout { grid-template-columns: minmax(0, 1fr); }
+  .pizza-menu-board { padding: 1.25rem; }
+  .timeline-dish { flex-wrap: wrap; gap: .75rem; }
+  .dish-content { flex-basis: calc(100% - 110px); }
+  .footer-bottom { align-items: flex-start; text-align: left; }
+}
+@media (max-width: 600px) {
+  .form-group-row, .merch-cart-line, .merch-cart-footer { grid-template-columns: minmax(0, 1fr); }
+  .video-info { padding: 1.1rem; }
+  .pizza-menu-board { padding: 1rem; box-shadow: var(--shadow-control); }
+  .timeline-dish { padding: .85rem; }
+  .merch-info { padding: .75rem; }
+  .footer-top { flex-direction: column; align-items: flex-start; }
+}
+
+/* Iteration 02 QA: shared section gutters, with component width caps preserved.
+   Hero and navigation retain their approved independent container geometry. */
+main > section:not(.hero-section) > .container,
+.site-footer > .container {
+  width: calc(100% - 2 * var(--content-gutter));
+  max-width: var(--content-max);
+  margin-inline: auto;
+  padding-inline: 0;
+}
+main > section:not(.hero-section) > .container > .section-badge-wrapper {
+  margin-bottom: var(--section-heading-gap);
+}
+.jukebox-section { padding-block: var(--section-space); }
+.video-stage-section :is(a, button):focus-visible {
+  outline-color: var(--state-focus-stage);
+}
+
+
+/* Iteration 03: accessible Menu of Time actions and PAPER history dialog. */
+.timeline-dish .btn-dish-inspect {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: .5rem;
+  background: transparent;
+  font-family: var(--type-control);
+  text-align: left;
+}
+.timeline-dish .gold-pill { background: var(--accent-warm); }
+.timeline-dish:has(button:focus-visible) { outline: 2px solid var(--state-focus-paper); outline-offset: 3px; }
+#timeline-modal {
+  inset: 0;
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  max-height: none;
+  margin: 0;
+  padding: 1rem;
+  border: 0;
+  overflow: hidden;
+  background: transparent;
+  color: var(--text-on-paper);
+  backdrop-filter: none;
+}
+#timeline-modal::backdrop { background: rgb(18 20 23 / 85%); }
+#timeline-modal:not([open]) { display: none; }
+#timeline-modal[open] { display: flex; }
+#timeline-modal .modal-box {
+  width: 100%;
+  max-width: 720px;
+  min-width: 0;
+  max-height: calc(100vh - 2rem);
+  max-height: calc(100dvh - 2rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable;
+  padding: 0;
+  background: var(--surface-paper);
+  color: var(--text-on-paper);
+  border: 1px solid var(--border-paper);
+  box-shadow: var(--shadow-surface);
+  animation: none;
+  overflow-wrap: anywhere;
+}
+.timeline-modal-header {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 60px;
+  padding: .5rem 1.5rem;
+  background: var(--surface-paper);
+  border-bottom: 1px solid var(--border-paper);
+  font: 700 .9rem var(--type-control);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+#timeline-modal .modal-close-btn {
+  position: static;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  color: var(--text-on-paper);
+  background: var(--background-paper);
+  border: 1px solid var(--border-paper);
+  font: 2rem/1 var(--type-control);
+}
+#timeline-modal .modal-close-btn:hover { background: var(--accent-warm); }
+#timeline-modal .modal-body { padding: clamp(1rem, 3vw, 2rem); }
+#timeline-modal .modal-dish-img {
+  width: 100%;
+  height: auto;
+  max-height: 320px;
+  object-fit: contain;
+  background: var(--background-paper);
+  border: 0;
+  box-shadow: none;
+  margin-bottom: 1.5rem;
+}
+.timeline-modal-title { color: var(--brand-red); font: 700 clamp(1.4rem, 3vw, 2rem)/1.3 var(--type-control); }
+.timeline-modal-subtitle { color: var(--text-muted-paper); font: 600 1rem/1.6 var(--type-reading); margin-top: .6rem; }
+.timeline-modal-story { font: 1rem/1.8 var(--type-reading); margin: 1.5rem 0; white-space: pre-line; }
+.timeline-modal-music, .timeline-modal-archives { border-top: 1px solid var(--border-paper); padding-top: 1.25rem; margin-top: 1.5rem; }
+.timeline-modal-music h4, .timeline-modal-archives h4 { font: 700 1.2rem/1.4 var(--type-control); margin-bottom: .75rem; }
+.timeline-modal-track-label { font: 600 .85rem/1.5 var(--type-control); margin-bottom: .5rem; }
+.timeline-modal-tracks { padding-left: 1.25rem; font: 1rem/1.7 var(--type-reading); }
+.timeline-modal-tracks li::marker { color: var(--brand-red); }
+.timeline-modal-archive-note { color: var(--text-muted-paper); font: .95rem/1.7 var(--type-reading); }
+.timeline-modal-links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1rem; }
+.timeline-modal-link { display: inline-flex; align-items: center; min-height: 44px; margin: .25rem .5rem .25rem 0; padding: .5rem .75rem; border: 1px solid var(--border-paper); color: var(--text-on-paper); font-family: var(--type-control); text-decoration: underline; text-underline-offset: .2em; }
+.timeline-modal-link:hover { background: var(--accent-warm); }
+#timeline-modal :is(button, a):focus-visible { outline: 3px solid var(--state-focus-paper); outline-offset: 3px; }
+@media (max-width: 600px) {
+  #timeline-modal { padding: .5rem; }
+  #timeline-modal .modal-box { max-height: calc(100vh - 1rem); max-height: calc(100dvh - 1rem); }
+  .timeline-modal-header { padding-inline: 1rem; }
+  .timeline-modal-links { flex-direction: column; align-items: flex-start; }
+}
+
+/* Iteration 02.1: explicit grids, sized by each component's usable content width. */
+.mixer-section > .container { container: mixer-layout / inline-size; }
+.col-merch { container: merch-layout / inline-size; }
+
+/* Two readable product cards need 2 x 184px plus a 16px gutter. */
+@container merch-layout (min-width: 24rem) {
+  .merch-items-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+/* Decks need at least 256px each, including their padding and controls.
+   2 x 256px + 24px = 536px; 4 x 256px + 3 x 24px = 1096px. */
+@container mixer-layout (min-width: 33.5rem) {
+  .pizza-decks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@container mixer-layout (min-width: 68.5rem) {
+  .pizza-decks-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Grid children and native range inputs must be allowed to shrink with the tracks. */
+.pizza-decks-grid > .deck-card,
+.merch-items-grid > .merch-card { min-width: 0; }
+.deck-action-buttons { flex-wrap: wrap; }
+.track-btn { flex: 1 1 5rem; min-width: 0; min-height: 44px; overflow-wrap: anywhere; }
+.deck-controls { margin-top: auto; min-width: 0; }
+.mixer-section .fader { min-width: 0; flex: 1 1 0; }
+.mixer-section .fader-group, .mixer-section .fader-row { min-width: 0; }
+.tempo-group { flex-wrap: wrap; gap: .75rem; }
+.track-name { overflow-wrap: anywhere; }
+
+/* Older engines keep the same 1/2/4 progression with conservative viewport fallbacks. */
+@supports not (container-type: inline-size) {
+  @media (min-width: 584px) {
+    .pizza-decks-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .merch-items-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (min-width: 1200px) {
+    .pizza-decks-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  }
 }
