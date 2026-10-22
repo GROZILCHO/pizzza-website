@@ -698,60 +698,141 @@ const timelineData = {
   }
 };
 
+// Add only editorially verified period links here. Omitted fields render no action.
+/** @type {Record<string, {spotifyUrl?: string, youtubeUrl?: string, facebookAlbumUrl?: string}>} */
+const timelineLinks = {};
+const TIMELINE_LABELS = {
+  bg: { archive: 'Исторически архив', close: 'Затвори историята', music: 'Музика от периода', photos: 'Снимки и архив', noArchive: 'Архивни връзки ще бъдат добавени след проверка.', spotify: 'Слушай в Spotify', youtube: 'Гледай в YouTube', facebook: 'Разгледай албума във Facebook', newTab: '(нов раздел)' },
+  en: { archive: 'History archive', close: 'Close history', music: 'Music from the period', photos: 'Photography and archive', noArchive: 'Archive links will be added after verification.', spotify: 'Listen on Spotify', youtube: 'Watch on YouTube', facebook: 'Explore the Facebook album', newTab: '(new tab)' }
+};
+let timelineModalController = null;
+function refreshTimelineModalLanguage() { timelineModalController?.refresh(); }
+function timelineExternalUrl(value, field) {
+  if (typeof value !== 'string') return null;
+  try {
+    const url = new URL(value);
+    const hosts = { spotifyUrl: ['open.spotify.com'], youtubeUrl: ['youtube.com', 'www.youtube.com', 'youtu.be'], facebookAlbumUrl: ['facebook.com', 'www.facebook.com'] };
+    return url.protocol === 'https:' && !url.username && !url.password && hosts[field]?.includes(url.hostname) ? url.href : null;
+  } catch { return null; }
+}
+function renderTimelineContent(target, key) {
+  const data = (timelineData[currentLang] || timelineData.bg)[key];
+  if (!data) return false;
+  const labels = TIMELINE_LABELS[currentLang] || TIMELINE_LABELS.bg;
+  const make = (tag, className, text) => {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  };
+  const image = make('img', 'modal-dish-img'); image.src = data.image; image.alt = data.imageAlt;
+  const heading = make('h3', 'timeline-modal-title', data.title); heading.id = 'timeline-modal-title';
+  const subtitle = make('p', 'timeline-modal-subtitle', data.subtitle);
+  const narrative = make('p', 'timeline-modal-story', data.story);
+  const music = make('section', 'timeline-modal-music');
+  const musicHeading = make('h4', '', labels.music); musicHeading.id = 'timeline-modal-music-title';
+  music.setAttribute('aria-labelledby', musicHeading.id);
+  const trackLabel = make('p', 'timeline-modal-track-label', data.tracksLabel);
+  const tracks = make('ul', 'timeline-modal-tracks');
+  data.tracks.forEach(track => tracks.append(make('li', '', track)));
+  music.append(musicHeading, trackLabel, tracks);
+  const musicLinks = make('div', 'timeline-modal-links');
+  const archives = make('section', 'timeline-modal-archives');
+  const archiveHeading = make('h4', '', labels.photos); archiveHeading.id = 'timeline-modal-archive-title';
+  archives.setAttribute('aria-labelledby', archiveHeading.id); archives.append(archiveHeading);
+  const links = timelineLinks[key] || {};
+  for (const [field, label] of [['spotifyUrl', labels.spotify], ['youtubeUrl', labels.youtube], ['facebookAlbumUrl', labels.facebook]]) {
+    const url = timelineExternalUrl(links[field], field);
+    if (!url) continue;
+    const link = make('a', 'timeline-modal-link', `${label} ${labels.newTab}`);
+    link.href = url; link.target = '_blank'; link.rel = 'noopener noreferrer';
+    (field === 'facebookAlbumUrl' ? archives : musicLinks).append(link);
+  }
+  if (musicLinks.children.length) music.append(musicLinks);
+  if (archives.children.length === 1) archives.append(make('p', 'timeline-modal-archive-note', labels.noArchive));
+  target.replaceChildren(image, heading, subtitle, narrative, music, archives);
+  document.getElementById('modal-close').setAttribute('aria-label', labels.close);
+  document.getElementById('timeline-modal-label').textContent = labels.archive;
+  return true;
+}
 function initTimelineModal() {
   const modal = document.getElementById('timeline-modal');
   const closeBtn = document.getElementById('modal-close');
   const target = document.getElementById('modal-content-target');
-  const dishes = document.querySelectorAll('.timeline-dish');
-
-  if (!modal || !closeBtn || !target) return;
-
-  dishes.forEach(dish => {
-    dish.addEventListener('click', () => {
-      const modalKey = dish.getAttribute('data-modal');
-      const langData = timelineData[currentLang] || timelineData.bg;
-      const data = langData[modalKey];
-      if (!data) return;
-
-      target.innerHTML = `
-        <img src="${data.image}" alt="${data.imageAlt}" class="modal-dish-img">
-        <h3 style="font-family: var(--font-display); font-size: 1.8rem; color: var(--color-punk-red); margin-bottom: 0.3rem;">
-          ${data.title}
-        </h3>
-        <h4 style="font-family: var(--font-heading); color: #555; text-transform: uppercase; margin-bottom: 1.2rem;">
-          ${data.subtitle}
-        </h4>
-        <p style="font-size: 1.05rem; line-height: 1.6; margin-bottom: 1.5rem; color: #222;">
-          ${data.story}
-        </p>
-        <div style="background: #111; color: #FFF; padding: 1rem; border: 2px solid #000; box-shadow: 4px 4px 0 #000;">
-          <strong style="display:block; font-family: var(--font-heading); color: var(--color-cheese-light); margin-bottom: 0.5rem;">
-            ${data.tracksLabel}
-          </strong>
-          <ul style="list-style: none; padding-left: 0;">
-            ${data.tracks.map(t => `<li style="font-family: var(--font-heading); font-size: 1.05rem;">🍕 ${t}</li>`).join('')}
-          </ul>
-        </div>
-      `;
-
-      modal.classList.add('open');
-      modal.setAttribute('aria-hidden', 'false');
-    });
+  if (!modal || !closeBtn || !target || modal.dataset.initialized) return;
+  modal.dataset.initialized = 'true';
+  let activeKey = null;
+  let opener = null;
+  let savedScroll = null;
+  function restorePage() {
+    if (!savedScroll) return;
+    const saved = savedScroll; savedScroll = null;
+    for (const [key, value] of Object.entries(saved.bodyStyles)) document.body.style[key] = value;
+    document.documentElement.style.overflow = saved.htmlOverflow;
+    const behavior = document.documentElement.style.scrollBehavior;
+    document.documentElement.style.scrollBehavior = 'auto';
+    window.scrollTo(saved.x, saved.y);
+    document.documentElement.style.scrollBehavior = behavior;
+  }
+  function finishClose() {
+    if (!activeKey) return;
+    activeKey = null; modal.classList.remove('open'); restorePage();
+    if (opener?.isConnected) opener.focus({ preventScroll: true });
+    opener = null;
+  }
+  function close() {
+    if (modal.open) modal.close();
+    finishClose();
+  }
+  function open(dish) {
+    const key = dish.dataset.modal;
+    if (modal.open || typeof modal.showModal !== 'function' || !renderTimelineContent(target, key)) return;
+    const trigger = dish.querySelector('button');
+    if (!trigger) return;
+    const pagePosition = { x: window.scrollX, y: window.scrollY };
+    modal.classList.add('open');
+    try { modal.showModal(); } catch { modal.classList.remove('open'); return; }
+    activeKey = key; opener = trigger;
+    // showModal supplies native background inertness; fix the page to lock touch scrolling too.
+    savedScroll = { x: pagePosition.x, y: pagePosition.y, htmlOverflow: document.documentElement.style.overflow, bodyStyles: {} };
+    for (const key of ['position', 'top', 'left', 'right', 'width', 'overflow', 'paddingRight']) savedScroll.bodyStyles[key] = document.body.style[key];
+    const scrollbar = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
+    const padding = parseFloat(window.getComputedStyle(document.body).paddingRight) || 0;
+    Object.assign(document.body.style, { position: 'fixed', top: `-${savedScroll.y}px`, left: '0', right: '0', width: '100%', overflow: 'hidden', paddingRight: `${padding + scrollbar}px` });
+    document.documentElement.style.overflow = 'hidden';
+    modal.querySelector('.modal-box').scrollTop = 0;
+    closeBtn.focus({ preventScroll: true });
+  }
+  document.querySelectorAll('.timeline-dish').forEach(dish => {
+    // Native action buttons supply Enter/Space activation; card clicks remain supported.
+    dish.addEventListener('click', () => open(dish));
   });
-
-  closeBtn.addEventListener('click', () => {
-    modal.classList.remove('open');
-    modal.setAttribute('aria-hidden', 'true');
-  });
-
-  modal.addEventListener('click', (e) => {
-    if (e.target === modal) {
-      modal.classList.remove('open');
-      modal.setAttribute('aria-hidden', 'true');
+  closeBtn.addEventListener('click', close);
+  modal.addEventListener('cancel', event => { event.preventDefault(); close(); });
+  modal.addEventListener('close', () => { if (!modal.open) finishClose(); });
+  modal.addEventListener('click', event => { if (event.target === modal) close(); });
+  modal.addEventListener('keydown', event => {
+    if (!modal.open) return;
+    if (event.key === 'Escape') { event.preventDefault(); close(); return; }
+    if (event.key !== 'Tab') return;
+    const controls = [...modal.querySelectorAll('button:not([disabled]), a[href], [tabindex="0"]')].filter(element => element.getClientRects().length);
+    const first = controls[0] || closeBtn;
+    const last = controls[controls.length - 1] || closeBtn;
+    if (event.shiftKey && (document.activeElement === first || !modal.contains(document.activeElement))) {
+      event.preventDefault(); last.focus();
+    } else if (!event.shiftKey && (document.activeElement === last || !modal.contains(document.activeElement))) {
+      event.preventDefault(); first.focus();
     }
   });
+  timelineModalController = {
+    refresh() {
+      if (!modal.open || !activeKey) return;
+      const focusWasInContent = target.contains(document.activeElement);
+      renderTimelineContent(target, activeKey);
+      if (focusWasInContent) closeBtn.focus({ preventScroll: true });
+    }
+  };
 }
-
 /* ==========================================================================
    4. BOOKING FORM
    ========================================================================== */
@@ -1165,6 +1246,7 @@ function initLanguageSwitcher() {
     if (cityInput) cityInput.placeholder = lang === 'en' ? 'City' : 'Град';
     if (msgInput) msgInput.placeholder = lang === 'en' ? 'Tell us about the stage, sound system and venue capacity...' : 'Разкажи за сцената, саунда и капацитета...';
     renderMerchCart();
+    refreshTimelineModalLanguage();
   }
 
   if (btnBg) {
