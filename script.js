@@ -740,10 +740,33 @@ function renderTimelineContent(target, key) {
     if (text !== undefined) element.textContent = text;
     return element;
   };
-  const image = make('img', 'modal-dish-img'); image.src = data.image; image.alt = data.imageAlt;
   const heading = make('h3', 'timeline-modal-title', data.title); heading.id = 'timeline-modal-title';
+  const titleBlock = make('header', 'timeline-modal-heading');
+  const titleParts = data.title.match(/^(\d{4})(:\s*)(.*)$/);
+  if (titleParts) {
+    const period = make('p', 'timeline-modal-year', titleParts[1]);
+    period.setAttribute('aria-hidden', 'true');
+    // Keep the complete original title in the accessible dialog name.
+    const spokenYear = make('span', 'timeline-modal-title-year', titleParts[1] + titleParts[2]);
+    heading.replaceChildren(spokenYear, make('span', '', titleParts[3]));
+    titleBlock.append(period);
+  }
+  titleBlock.append(heading);
+  const editorial = make('div', 'timeline-modal-editorial');
+  const figure = make('figure', 'timeline-modal-figure');
+  const image = make('img', 'modal-dish-img');
+  const setImageOrientation = () => {
+    if (!image.naturalWidth || !image.naturalHeight) return;
+    editorial.dataset.orientation = image.naturalHeight > image.naturalWidth ? 'portrait' : image.naturalWidth > image.naturalHeight ? 'landscape' : 'square';
+  };
+  image.addEventListener('load', setImageOrientation, { once: true });
+  image.src = data.image; image.alt = data.imageAlt;
+  if (image.complete) setImageOrientation();
+  figure.append(image);
+  const copy = make('div', 'timeline-modal-copy');
   const subtitle = make('p', 'timeline-modal-subtitle', data.subtitle);
   const narrative = make('p', 'timeline-modal-story', data.story);
+  copy.append(subtitle, narrative); editorial.append(figure, copy);
   const music = make('section', 'timeline-modal-music');
   const musicHeading = make('h4', '', labels.music); musicHeading.id = 'timeline-modal-music-title';
   music.setAttribute('aria-labelledby', musicHeading.id);
@@ -764,8 +787,11 @@ function renderTimelineContent(target, key) {
     (field === 'facebookAlbumUrl' ? archives : musicLinks).append(link);
   }
   if (musicLinks.children.length) music.append(musicLinks);
-  if (archives.children.length === 1) archives.append(make('p', 'timeline-modal-archive-note', labels.noArchive));
-  target.replaceChildren(image, heading, subtitle, narrative, music, archives);
+  if (archives.children.length === 1) {
+    archives.className += ' is-pending';
+    archives.append(make('p', 'timeline-modal-archive-note', labels.noArchive));
+  }
+  target.replaceChildren(titleBlock, editorial, music, archives);
   document.getElementById('modal-close').setAttribute('aria-label', labels.close);
   document.getElementById('timeline-modal-label').textContent = labels.archive;
   return true;
